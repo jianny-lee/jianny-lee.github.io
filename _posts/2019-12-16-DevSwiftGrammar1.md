@@ -1,14 +1,12 @@
 ---
 layout: post
-title: "[Study] Grammar : 배열과 반복문"
+title: "[Grammar] 배열과 반복문"
 date: 2019-12-16
 categories: study
 tags: ios
 comments: true
 ---
 
-# Swift ) 배열과 반복문
-### **2019.12.16 Mon** 
 ## 배열
 
 > 배열을 선언하는 두가지 방법

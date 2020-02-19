@@ -7,7 +7,6 @@ tags: machinelearning
 comments: true
 ---
 
-### **2019.11.01 Fri**
 ### **1. 아나콘다 다운로드 & 설치**
 `wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh`
 - wget 명령어를 사용하기 위해선, homebrew를 이용하여 install을 먼저 해줘야함. (`brew install wget`)

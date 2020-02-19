@@ -7,7 +7,6 @@ tags: machinelearning
 comments: true
 ---
 
-### **2019.12.09 Mon**
 [ 네이버 검색과 인공지능 기술 ]
 ## *네이버*
 #### -> 다양한 인터넷 서비스의 집합

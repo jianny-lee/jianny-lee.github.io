@@ -7,8 +7,6 @@ tags: machinelearning
 comments: true
 ---
 
-### **2019.12.15 Sun**
-
 ## 특징
 > */Define by Run/* 계산 그래프 구축 방법을 이용 -> 동적으로 구성 가능. 하지만 비용이 많이 들음
 > *자동미분 가능*

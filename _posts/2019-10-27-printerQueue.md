@@ -7,7 +7,6 @@ tags: algorithm
 comments: true
 ---
 
-### **2019.10.27 Sun**
 #### 이번에 풀은 문제
 <img width="1200" alt="printQueue" src="https://user-images.githubusercontent.com/56791347/67636670-514b5900-f916-11e9-9f41-b777252c38b3.png">
 
