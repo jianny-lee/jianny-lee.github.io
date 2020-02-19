@@ -22,6 +22,10 @@ jianny-lee:
   # Comment/uncommet to show/hide
   # Icons appear in order, can be rearranged:
   social:
+    github:          jianny-lee
+    linkedin:        jian-lee-a39b64166
+    steam:           76561198934183719
+    email:           mailto:jianny.lee96@gmail.com
     # facebook:        cantouchmin
     # twitter:         <username>
     # google:          <number>
@@ -40,24 +44,20 @@ jianny-lee:
     # deviantart:      <username>
     # ello:            <username>
     # twitch:          <username>
-    steam:           76561198934183719
     # reddit:          <username>
     # tumblr:          <username>
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-    github:          jianny-lee
     # stackoverflow:   <number/username>
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-    linkedin:        jian-lee-a39b64166
     # xing:            <firstname_lastname_counter>
     # blogger:         <number>
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-    email:           mailto:jianny.lee96@gmail.com
     # rss:             https://jianny-lee.github.io/feed.xml
 
 # Another author
