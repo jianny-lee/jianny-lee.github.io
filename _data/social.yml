@@ -94,7 +94,7 @@
   steam:
     name: Steam
     icon: icon-steam
-    pretend: "http://steamcommunity.com/profiles/"
+    pretend: "https://steamcommunity.com/profiles/"
   dropbox:
     name: Dropbox
     icon: icon-dropbox
