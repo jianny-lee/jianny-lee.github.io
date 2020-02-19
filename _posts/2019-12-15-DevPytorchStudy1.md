@@ -3,7 +3,7 @@ layout: post
 title: "[Study] Pytorch : 지도/비지도/강화 학습"
 date: 2019-12-15
 categories: study
-tags: machinelearning, supervised, unsupervised
+tags: machinelearning
 comments: true
 ---
 

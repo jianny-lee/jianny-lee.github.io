@@ -3,7 +3,7 @@ layout: post
 title: "[Study] Error : this class is not key value coding-compliant for the key 에러 발생시"
 date: 2019-12-16
 categories: study
-tags: ios, error
+tags: ios
 comments: true
 ---
 

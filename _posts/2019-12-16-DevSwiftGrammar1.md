@@ -3,7 +3,7 @@ layout: post
 title: "[Study] Grammar : 배열과 반복문"
 date: 2019-12-16
 categories: study
-tags: ios, grammar, array, loop
+tags: ios
 comments: true
 ---
 
