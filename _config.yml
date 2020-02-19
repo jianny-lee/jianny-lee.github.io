@@ -18,7 +18,7 @@ tagline:             "My diary about study, experience, and feeling"
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  Server, ios, and ML
+  Server, ios, and ML 🥰
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
