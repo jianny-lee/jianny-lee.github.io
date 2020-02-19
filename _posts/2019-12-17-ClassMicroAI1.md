@@ -3,7 +3,7 @@ layout: post
 title: "[Class] Micro - AI 특강 1일차"
 date: 2019-12-17
 categories: study
-tags: class, ai, machinelearning, deeplearning, microAI
+tags: machinelearning
 comments: true
 ---
 
