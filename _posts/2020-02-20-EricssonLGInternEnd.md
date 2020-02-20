@@ -8,6 +8,8 @@ comments: true
 
 19년도부터 에릭슨엘지와의 인연이 시작되어 지금까지 이어져온 것 같다.
 작년 19년 5월, Girls In ICT 해커톤에서 수상을 하게되어 감사하게도 인턴십의 기회를 얻을 수 있었다.
+
+
 **작년 해커톤 사진들**
 ![IMG_5530](https://user-images.githubusercontent.com/56791347/74923839-d4884180-5414-11ea-9351-8f4ad329fccf.jpeg)
 ![IMG_5533](https://user-images.githubusercontent.com/56791347/74923872-dce07c80-5414-11ea-991e-70099ccf7679.jpeg)
@@ -16,6 +18,7 @@ comments: true
 ![IMG_5568](https://user-images.githubusercontent.com/56791347/74923938-f5e92d80-5414-11ea-852c-c4110a2b7365.jpeg)
 
 수상 후 여름과 겨울 중 인턴 수행 기간을 선택할 수 있었다. 나와 함께했던 동료들은 겨울 인턴을 신청하였고, 감사하게도 지난 20년 1월부터 약 6주동안 인턴십을 수행하였다.
+
 
 **20년 인턴십 수행**
 ![IMG_2182](https://user-images.githubusercontent.com/56791347/74924453-def70b00-5415-11ea-840b-f32be1b7ee56.jpeg)
