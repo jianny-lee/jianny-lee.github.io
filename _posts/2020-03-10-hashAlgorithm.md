@@ -7,7 +7,7 @@ tags: algorithm
 comments: true
 ---
 
-~~~ cpp
+```cpp
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -28,6 +28,6 @@ string solution(vector<string> participant, vector<string> completion) {
     
     return answer;
 }
-~~~
+```
 
 여기서 가장 주목해서 생각해야 할 부분은 먼저 해시의 데이터를 sort하는 것. sort만 하면, 나머지 부분들은 쉽게 해결할 수 있었다.
