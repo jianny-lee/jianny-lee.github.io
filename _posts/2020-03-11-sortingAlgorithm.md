@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 프로그래머스 ] 완주하지 못한 선수(해시)"
+title: "[ 프로그래머스 ] k번째 수()"
 date: 2020-03-11
 categories: study
 tags: algorithm
