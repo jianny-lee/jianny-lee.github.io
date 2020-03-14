@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 프로그래머스 ] k번째 수()"
+title: "[ 프로그래머스 ] k번째 수(정)"
 date: 2020-03-11
 categories: study
 tags: algorithm
