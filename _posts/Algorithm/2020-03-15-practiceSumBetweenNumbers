@@ -1,0 +1,35 @@
+---
+layout: post
+title: "[ 프로그래머스 ] 가운데 글자 가져오기 (연습문제)"
+date: 2020-03-15
+categories: study
+tags: algorithm
+comments: true
+---
+
+**코드**
+```cpp
+#include <string>
+#include <vector>
+
+using namespace std;
+
+long long solution(int a, int b) {
+    long long answer = 0;
+    int firstNum,secondNum;
+    
+    if(a > b){
+        firstNum = b;
+        secondNum = a;
+    } else {
+        firstNum = a;
+        secondNum = b;
+    }
+    
+    for(int i=firstNum;i<=secondNum;i++){
+        answer+=i;
+    }
+    return answer;
+}
+```
+<img width="814" alt="스크린샷 2020-03-15 18 19 56" src="https://user-images.githubusercontent.com/56791347/76698711-94517180-66e9-11ea-8b22-75a8ab82a528.png">
