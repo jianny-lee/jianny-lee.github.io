@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 백준알고리즘 ] ATM (그리드 알고리즘)"
+title: "[ 백준알고리즘 ] 11399번 ATM (그리드 알고리즘)"
 date: 2020-03-14
 categories: study
 tags: algorithm

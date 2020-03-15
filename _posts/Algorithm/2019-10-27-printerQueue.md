@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "1966번 프린터큐"
+title: "[ 백준알고리즘 ] 1966번 프린터큐"
 date: 2019-10-27
 categories: study
 tags: algorithm
