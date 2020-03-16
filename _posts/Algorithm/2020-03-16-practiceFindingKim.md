@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[ 프로그래머스 ] 서울에서 김서방 찾기 (연습문제)"
-date: 2020-03-15
+date: 2020-03-16
 categories: study
 tags: algorithm
 comments: true
