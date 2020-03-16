@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[ 프로그래머스 ] 두 정수 사이의 합 (연습문제)"
-date: 2020-03-15
+title: "[ 프로그래머스 ] 문자열 내 p와 y의 개수 (연습문제)"
+date: 2020-03-16
 categories: study
 tags: algorithm
 comments: true
