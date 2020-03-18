@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 프로그래머스 ] 수박수박수박수박수박수? (연습문제)"
+title: "[ 프로그래머스 ] 약수의 합 (연습문제)"
 date: 2020-03-17
 categories: study
 tags: algorithm
