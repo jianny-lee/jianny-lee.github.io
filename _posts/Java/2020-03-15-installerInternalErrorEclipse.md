@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Error] Registry directory not available(Mac)"
-date: 2019-12-15
+date: 2020-03-15
 categories: study
 tags: java
 comments: true
