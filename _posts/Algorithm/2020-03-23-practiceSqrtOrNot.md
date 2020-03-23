@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 프로그래머스 ] x만큼 간격이 있는 n개의 숫자 (연습문제)"
+title: "[ 프로그래머스 ] 정수 제곱근 판별 (연습문제)"
 date: 2020-03-23
 categories: study
 tags: algorithm
