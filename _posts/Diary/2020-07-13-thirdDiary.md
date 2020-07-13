@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "2020년 7월에 작성하는 근황"
-date: 2020-07-10
+date: 2020-07-13
 categories: Diary
 comments: false
 ---
@@ -15,7 +15,7 @@ comments: false
 
 그래도 열심히 갈아 넣으면서 살다보니 좋은 성적을 받게 되었다!! 헤헤헤  
 
-<img width="332" alt="스크린샷 2020-07-13 13 34 43" src="https://user-images.githubusercontent.com/56791347/87271235-9dbedf00-c50d-11ea-9258-72b177cef5c4.png">
+<img width="332" alt="스크린샷 2020-07-13 13 34 43" src="https://user-images.githubusercontent.com/56791347/87271235-9dbedf00-c50d-11ea-9258-72b177cef5c4.png">
 
 근데 죽는 줄 알았다.  
 
