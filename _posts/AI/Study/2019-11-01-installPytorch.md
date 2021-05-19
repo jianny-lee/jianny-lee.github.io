@@ -2,7 +2,7 @@
 layout: post
 title: "Anaconda 설치 및 Pytorch & TensorFlow 설치"
 date: 2019-11-01
-categories: dev
+categories: study
 tags: machinelearning
 comments: true
 ---

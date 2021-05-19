@@ -2,7 +2,7 @@
 layout: post
 title: "[Swift] 웹 개발 : 앱 시작 시 페이지 보이기"
 date: 2019-12-16
-categories: dev
+categories: study
 tags: ios
 comments: true
 ---
