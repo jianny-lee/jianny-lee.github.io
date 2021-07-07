@@ -2,7 +2,8 @@
 layout: post
 title: "[Error] curl: (7) Failed to connect to localhost port 8080: Connection refused"
 date: 2021-05-20
-categories: Containers
+categories: study
+tags: container
 comments: false
 ---
 
