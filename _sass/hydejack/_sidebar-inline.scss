@@ -1,5 +1,5 @@
 .sidebar {
-  color: rgba(255,255,255,.75);
+  color: rgba(255,255,255,1);
   text-align: left;
 
   &::before {
@@ -20,9 +20,8 @@
 
   /* Sidebar links */
   a {
-    // color: #fff;
     color: #fff;
-    border-bottom-color: rgba(255, 255, 255, 1);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
 
     // &:hover, &:focus {
     //   border-bottom-color: #fff;
