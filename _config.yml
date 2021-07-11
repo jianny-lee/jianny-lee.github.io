@@ -11,14 +11,14 @@ url:                 https://jianny-lee.github.io
 # Set to '' when hosting a blog on GitHub Pages, ie on `//<username>.github.io`
 # Set to '/<reponame>' when using the `gh-pages` branch of a repository
 baseurl:             ""
-
+repository:             "jianny-lee/jianny-lee.github.io"
 # A very short description of your page
 tagline:             "My diary about study, experience, and feeling"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  Server, Infra, Cat 🐱🥰
+  Server, Infra, and Cat 🐱🥰
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
@@ -26,7 +26,7 @@ author:
   email:             jianny.lee96@gmail.com
 
 # Fallback image and color
-image:               /assets/img/main_left.jpg
+image:               /assets/img/home_left2.jpeg
 color:               '#4f86aa'
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
@@ -47,8 +47,13 @@ google_fonts:        Merriweather-Light
 google_analytics:    UA-158741376-1
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
-disqus: True
-disqus_shortname:    jianny-blog
+# disqus: True
+# disqus_shortname:    jianny-blog
+# comments:
+#   provider:          "utterances"
+#   utterances:
+#     theme:          "github-light"
+#     issue_term:     "pathname"
 
 # This text will appear in the footer of every page. Markdown enabled.
 copyright:           '&copy; 2020.02. by jianny-lee'
