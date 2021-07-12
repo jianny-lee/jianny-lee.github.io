@@ -6,9 +6,86 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Jul 2021 23:54:48 +0900</pubDate>
-    <lastBuildDate>Sun, 11 Jul 2021 23:54:48 +0900</lastBuildDate>
+    <pubDate>Tue, 13 Jul 2021 00:20:22 +0900</pubDate>
+    <lastBuildDate>Tue, 13 Jul 2021 00:20:22 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Web] Network</title>
+        <description>&lt;p&gt;이번 네트워크 내용 정리는 &lt;strong&gt;생활코딩 WEB2-Home Server강의&lt;/strong&gt;를 기반으로 정리했다.
+아무래도 짧게 진행되는 강의라서 좀 많은 내용들이 생략된건 사실이지만,,,
+자세한건 나중에 깊게 다루고 우선은 강의 들은 내용들에 대해서 내 나름대로 간단히 정리해봤다.&lt;/p&gt;
+
+&lt;h2 id=&quot;network&quot;&gt;Network&lt;/h2&gt;
+
+&lt;h4 id=&quot;router&quot;&gt;Router&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;IP Address : 다른 컴퓨터와 통신할 수 있게 해주는 주소&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;WAN(wide area network)
+    &lt;ul&gt;
+      &lt;li&gt;전세계 누구나 접속 가능 (public IP Address)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;LAN(local area network)
+    &lt;ul&gt;
+      &lt;li&gt;LAN에 연결되는 것들은 같은 영역대의 ip를 부여받음&lt;/li&gt;
+      &lt;li&gt;Gateway Address(Router Address)&lt;/li&gt;
+      &lt;li&gt;private IP Address&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;nat&quot;&gt;NAT&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Network Address Translation&lt;/li&gt;
+  &lt;li&gt;요청한 IP를 LAN을 통해서 ip가 입력되고 NAT를 통해 public IP로 변경하여 WAN으로 통신을 요청&lt;/li&gt;
+  &lt;li&gt;때문에 인터넷을 나갈 때만 공인 주소(유일한 IP 주소)를 가지고 나가는 방식&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;ip-주소-알아내는-법&quot;&gt;IP 주소 알아내는 법&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;맥은 ‘시스템 설정’ -&amp;gt; ‘네트워크’ -&amp;gt; ‘고급’ -&amp;gt; ‘TCP/IP’로 들어가기&lt;/li&gt;
+  &lt;li&gt;또는, terminal에서 ifconfig라고 입력하면 router 주소와 컴퓨터의 ip 주소를 찾을 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;port&quot;&gt;Port&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;ip가 통신하고자 하는 공간(자리)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;port-forwarding&quot;&gt;Port Forwarding&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;어떤 포트로 길을 열어줘야 하는가 확인 후, 그 포트로 전달해주는 방식&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;dynamic-ip-address&quot;&gt;Dynamic IP Address&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;사용자가 사용 가능한 IP를 자동으로 새롭게 부여하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;static-ip-address&quot;&gt;Static IP Address&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;고정 IP 주소로 사용자에게 전용으로 부여되는 인터넷 주소&lt;/li&gt;
+  &lt;li&gt;변하지 않고 사용됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;dhcpdynamic-host-configuration-protocol&quot;&gt;DHCP(Dynamic Host Configuration Protocol)&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;IP와 같은 식별자는 절대 같은 주소를 부여하면 안됨&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 13 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/backend/2021/07/13/studyNetwork/</link>
+        <guid isPermaLink="true">http://localhost:4000/backend/2021/07/13/studyNetwork/</guid>
+        
+        <category>web</category>
+        
+        
+        <category>backend</category>
+        
+      </item>
     
       <item>
         <title>2021년 7월에 작성하는 근황</title>
@@ -1400,49 +1477,6 @@ int로만 계산을 하다보면, 나중에 출력이 될 때 충분한 값이 �
         <pubDate>Sun, 15 Mar 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/study/2020/03/15/practiceHateSameNumber/</link>
         <guid isPermaLink="true">http://localhost:4000/study/2020/03/15/practiceHateSameNumber/</guid>
-        
-        <category>algorithm</category>
-        
-        
-        <category>study</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 나누어 떨어지는 숫자 배열 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
-#include &amp;lt;algorithm&amp;gt; //sort를 사용하기 위해 추가
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//나누어 떨어지는 값일 경우&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//나누어 떨어지는 값이 아닐 경우&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//나누어 떨어지는 값이 하나도 없는 경우&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//오름차순으로 정렬&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img width=&quot;819&quot; alt=&quot;스크린샷 2020-03-15 12 57 08&quot; src=&quot;https://user-images.githubusercontent.com/56791347/76694955-7c172d80-66bc-11ea-90f6-774e0102cef6.png&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 15 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/study/2020/03/15/practiceDivisorArr/</link>
-        <guid isPermaLink="true">http://localhost:4000/study/2020/03/15/practiceDivisorArr/</guid>
         
         <category>algorithm</category>
         
