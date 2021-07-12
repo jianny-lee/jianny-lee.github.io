@@ -31,68 +31,68 @@ var tipuesearch = {"pages": [{
   },{
     "title": "[ 백준 1934번 ] 최소 공배수",
     "text": "코드 #include &lt;iostream&gt; #include &lt;vector&gt; using namespace std; int min(int a,int b){ int lcdNum; int n,m; if(a &gt; b){ n = a; m = b; } else { n = b; m = a; } while(true){ if(m == 0){ int multi = b / n; lcdNum=multi*a; //최소공배수 break; } else { int tmp = n; n = m; m = tmp % m; } } return lcdNum; } int main(){ int testCase, a,b; cin &gt;&gt; testCase; for(int i=0;i&lt;testCase;i++){ cin &gt;&gt; a &gt;&gt; b; cout &lt;&lt; min(a,b) &lt;&lt; endl; } return 0; } 저번에 프로그래머스에서 풀었던 최소공배수, 최대공약수 문제를 복습하 위해서 백준에서 한번 다시 풀어보았다.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/25/baek1923/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/25/baek1923/"
   },{
     "title": "[ 프로그래머스 ] 행렬의 덧셈 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; vector&lt;vector&lt;int&gt;&gt; solution(vector&lt;vector&lt;int&gt;&gt; arr1, vector&lt;vector&lt;int&gt;&gt; arr2) { vector&lt;vector&lt;int&gt;&gt; answer; vector&lt;int&gt; sumArr; int pushNum; for(int i=0;i&lt;arr1.size();i++){ // 행 for(int j=0;j&lt;arr1[i].size();j++){ // 열 pushNum = arr1[i][j] + arr2[i][j]; if(pushNum &lt; 500){ sumArr.push_back(pushNum); } } answer.push_back(sumArr); sumArr.clear(); } return answer; } vector&lt;vector&lt;int&gt;&gt;라고 선언된 변수는 2차원 배열이라고 생각하고 풀면 편함!",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/24/practiceArraySum/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/24/practiceArraySum/"
   },{
     "title": "[ 프로그래머스 ] 정수 제곱근 판별 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;cmath&gt; #include &lt;iostream&gt; using namespace std; long long solution(long long n) { long long answer = 0; double tmpNum = sqrt(n); if(tmpNum-(int)tmpNum == 0){ //tmpNum을 형변환 하면 몫만 남을테니, tmpNum += 1; //이 값을 빼줬을 때에 대해 판별 answer = pow(tmpNum,2); }else{ answer = -1; } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/23/practiceSqrtOrNot/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/23/practiceSqrtOrNot/"
   },{
     "title": "[ 프로그래머스 ] 직사각형 별찍기 (연습문제)",
     "text": "코드 #include &lt;iostream&gt; using namespace std; int main(void) { int a; int b; cin &gt;&gt; a &gt;&gt; b; for(int i=0;i&lt;b;i++){ for(int j=0;j&lt;a;j++){ cout&lt;&lt;'*'; } cout&lt;&lt;endl; } return 0; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/23/practiceRectangleStars/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/23/practiceRectangleStars/"
   },{
     "title": "[ 프로그래머스 ] 제일 작은 수 제거하기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;iostream&gt; using namespace std; vector&lt;int&gt; solution(vector&lt;int&gt; arr) { vector&lt;int&gt; answer; int min = arr[0]; if(arr.size()==1){ return {-1}; } for(int i=1;i&lt;arr.size();i++){ //최솟값 판별 if(min &gt; arr[i]){ min = arr[i]; } } for(int i=0;i&lt;arr.size();i++){ if(arr[i]!=min){ answer.push_back(arr[i]); } else { continue; } } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/23/practiceEraseMinNumber/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/23/practiceEraseMinNumber/"
   },{
     "title": "[ 프로그래머스 ] x만큼 간격이 있는 n개의 숫자 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; vector&lt;long long&gt; solution(int x, int n) { vector&lt;long long&gt; answer; long long pushNum = x; answer.push_back(pushNum); for(int i=1;i&lt;n;i++){ pushNum = pushNum + x; answer.push_back(pushNum); } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/21/practiceNumbersBetweenNum/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/21/practiceNumbersBetweenNum/"
   },{
     "title": "[ 프로그래머스 ] 하샤드 수 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; bool solution(int x) { bool answer = false; vector&lt;int&gt; arr; int pushNum,divisor=0,tmpNum = x; //각 자릿수의 숫자들을 vector에 입력 while(true){ if(tmpNum/10==0){ pushNum = tmpNum; arr.push_back(tmpNum); break; } else { pushNum = tmpNum%10; tmpNum = tmpNum/10; arr.push_back(pushNum); } } //자릿수 합 구하기 for(int i=0;i&lt;arr.size();i++){ divisor += arr[i]; } //하샤드 수인지 판별 if(x%divisor==0){ answer = true; } else { answer = false; } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/21/practiceHarshadNumber/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/21/practiceHarshadNumber/"
   },{
     "title": "[ 프로그래머스 ] 콜라츠 추측 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; int solution(int num) { int answer = 0; long long tmpNum = num; long long count = 0; if(num == 1){ return answer; } while(true){ if(tmpNum%2==0){ //even tmpNum/=2; count++; if(tmpNum == 1 &amp;&amp; count &lt;= 500) { answer = count; break; } else if(tmpNum!=1&amp;&amp;count &gt;=500){ answer = -1; break; } } else if(tmpNum%2!=0.0){ //odd tmpNum = tmpNum*3 + 1; count++; if(tmpNum == 1 &amp;&amp; count &lt;= 500) { answer = count; break; } else if (tmpNum!=1&amp;&amp;count &gt;= 500){ answer = -1; break; } } } return answer; } 여기서 함정은 반복적으로 계산하는 tmpNum의 변수형이 관건이었다. int로만 계산을 하다보면, 나중에 출력이 될 때 충분한 값이 들어가지 못하여 값이 이상하게 되는 경우가 있기에, byte를 많이 할당 가능한 long long으로 설정했다. 그러면 금방 쉽게 풀리는 문제",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/21/practiceCollatzConjecture/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/21/practiceCollatzConjecture/"
   },{
     "title": "[ 프로그래머스 ] 자연수 뒤집어 배열로 만들기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; vector&lt;int&gt; solution(long long n) { vector&lt;int&gt; answer; long long tmpNum = n; long long pushNum; while(true){ int tmpNum2; if(tmpNum / 10 == 0){ pushNum = tmpNum; answer.push_back(pushNum); break; } else { pushNum = tmpNum % 10; //나머지 tmpNum /= 10; answer.push_back(pushNum); } } return answer; } 변수를 선언할때, parameter의 변수인long long으로 선언하는 것 잊지말기. 처음에 int로 했다가 분명 테스트에서는 맞는데 왜 안되지? 해서 보니까 내가 변수들을 int로 선언했다는 걸 깨달았다.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/20/practiceUpperNum/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/20/practiceUpperNum/"
   },{
     "title": "[ 프로그래머스 ] 핸드폰 번호 가리기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; string solution(string phone_number) { string answer = \"\"; int size = phone_number.size(); for(int i=0;i&lt;size-4;i++){ answer += \"*\"; } for(int i=size-4;i&lt;size;i++){ answer+=phone_number[i]; } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/20/practiceSecurityPhoneNum/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/20/practiceSecurityPhoneNum/"
   },{
     "title": "[ 프로그래머스 ] 자릿수 더하기 (연습문제)",
     "text": "코드 #include &lt;iostream&gt; #include &lt;vector&gt; using namespace std; int solution(int n) { int answer = 0; vector&lt;int&gt; sumArr; int tmpN = n, tmp1, tmp2; while(true){ if(tmpN/10 == 0){ //제일 큰 자리수의 값 넣기 sumArr.push_back(tmpN%10); break; } else { //큰 자리수를 제외한 값들을 벡터에 넣기 tmp1 = tmpN / 10; tmp2 = tmpN % 10; sumArr.push_back(tmp2); tmpN = tmp1; } } for(int i=0;i&lt;sumArr.size();i++){ answer += sumArr[i]; } return answer; } 문제를 먼저 봤을때, 주어지는 N이 세자리수인가? 하고 생각했는데 엄청나게 크길래 이걸 어떻게 처리할지 먼저 고민했다. 그러다가 10으로 나누었을 때 나머지는 먼저 지정한 벡터 변수에 push하고 몫을 10으로 나누고,,, 뭐 이런걸 계속 반복해서 마지막에 10으로 나누었을 때 몫이 0이 되면 나머지를 넣고 break를 하도록 코드를 작성하니 한번에 완료.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/19/practiceSumCiphers/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/19/practiceSumCiphers/"
   },{
     "title": "[ 프로그래머스 ] 정수 내림차순으로 배치하기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; using namespace std; long long solution(long long n) { long long answer = 0; long long tmpN = n, tmp1,tmp2; long long multiNum = 10; vector&lt;int&gt; sumArr; while(true){ if(tmpN/10 == 0){ //제일 큰 자리수의 값 넣기 sumArr.push_back(tmpN%10); break; } else { //큰 자리수를 제외한 값들을 벡터에 넣기 tmp1 = tmpN / 10; tmp2 = tmpN % 10; sumArr.push_back(tmp2); tmpN = tmp1; } } sort(sumArr.begin(),sumArr.end()); //오름차순으로 정리하기 (만약에 내림차순으로 하고싶다면) //sort(sumArr.begin(),sumArr.end(),greater(int));라고 해도 되지만, //여기서 원하는건 vector가 아니라서 오름차순으로 처리함 for(int i=0;i&lt;sumArr.size();i++){ if(i!=0){ answer = answer + sumArr[i]*multiNum; multiNum *= 10; } else { answer += sumArr[i]; } } return answer; } 문제에서 원하는건 정수를 내림차순으로 배치하는 것이었지만, 나는 vector에 넣고 오름차순으로 먼저 배치했다. 그 다음에 long long으로 return하기위해 vector의 사이즈의 자릿수들 만큼 곱해서 더해주었다.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/19/practiceIntegerArrange/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/19/practiceIntegerArrange/"
   },{
     "title": "[ 프로그래머스 ] 최대공약수와 최소공배수 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; vector&lt;int&gt; solution(int n, int m) { vector&lt;int&gt; answer; int a = n,b = m; while(true){ if(b == 0){ int multi1 = n / a; int multi2 = m / a; answer.push_back(a); answer.push_back(multi1*multi2*a); break; } else { int tmp = a; a = b; b = tmp % b; } } return answer; } 요즘 알고리즘 수업시간에 배운 Euclid’s method가 나와서 덕분에 쉽게 이해하고 풀을 수 있었던 문제.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/19/practiceGcdLcm/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/19/practiceGcdLcm/"
   },{
     "title": "[Error/BackEnd(mySQL)] The server quit without updating PID file",
     "text": "요즘 백엔드 공부를 시작했다. 근데 mysql을 다운하려는데, 자꾸 같은 오류가 나서 구글링하다가 나중에 또 같은 오류가 날 것 같아서 작성하는 글 자꾸 이런 오류가 나면서 당최 감을 잡지 못했다. 그러다가 스크린샷에 있는 경로의 *.err 파일을 보면 뭔가 풀릴까 싶어서 들어가봤다 에러 파일의 로그를 들여다보니 ‘Address already in use’를 보았다. 처음에 딱 보자마자 ‘엥? 내가 언제 mysql 포트를 썼다고???’ 라고 생각했는데, 과거를 생각해보니 저번에 node.js랑 mysql 연동해서 웹사이트 만든다고 했던게 생각났다. 그때 공부할때 쓰고선 mysql을 종료를 안했던 것 같았다. 그래서 이미 사용중인 port를 정지 시키고 다시 사용하고자 했다. isof -i: 3306으로 저 포트를 사용중인 PID를 찾고자 했다. 그러고선 kill -9 PID_NUM 을 사용해서 포트를 죽여버렸다. ㅎㅎ;; 그러고선 다시 mysql.server start를 사용하니 잘 된다! 만약에 이러한 오류가 생기면, 먼저 에러 로그를 읽어보고선 어디에서 오류가 난건지 분석하고 해결하려는 습관 들이기!!!",
@@ -106,33 +106,33 @@ var tipuesearch = {"pages": [{
   },{
     "title": "[ 프로그래머스 ] 약수의 합 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;iostream&gt; using namespace std; int solution(int n) { int answer = 0; vector&lt;int&gt; sumArr; int checkNum; for(int i=1;i&lt;=n;i++){ for(int j=1;j&lt;=n;j++){ if(i*j==n) { sumArr.push_back(i); sumArr.push_back(j); break; } } } for(int i=0;i&lt;sumArr.size()/2;i++){ answer+=sumArr[i]; } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/17/practiceSumOfAliquot/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/17/practiceSumOfAliquot/"
   },{
     "title": "[ 프로그래머스 ] 평균구하기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; double solution(vector&lt;int&gt; arr) { double answer = 0; for(int i=0;i&lt;arr.size();i++){ answer += arr[i]; } answer = answer / arr.size(); return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/17/practiceAverage/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/17/practiceAverage/"
   },{
     "title": "[ 프로그래머스 ] 수박수박수박수박수박수? (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; string solution(int n) { string answer = \"\"; string su = \"수\"; string bak = \"박\"; for(int i=1;i&lt;=n;i++){ if(i%2!=0){ //홀수 answer += su; }else if(i%2==0){ answer += bak; } } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/17/practiceSuBak/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/17/practiceSuBak/"
   },{
     "title": "[ 프로그래머스 ] 문자열 다루기 기본 (연습문제)",
     "text": "코드 #include &lt;string&gt; using namespace std; bool solution(string s) { bool answer = true; if(s.size()==4 || s.size()==6){ //문자열이 4 혹은 6일때 for(int i=0;i&lt;s.size();i++){ //숫자로 구성되어 있는지 판단 if(s[i] &gt;= '0' &amp;&amp; s[i] &lt;= '9'){ continue; } else if(s[i] &gt;= 'a' &amp;&amp; s[i] &lt;= 'z' || s[i] &gt;= 'A' &amp;&amp; s[i] &lt;= 'Z'){ answer = false; } } } else { //문자열이 4 혹은 6이 아닐경우 answer = false; } return answer; } 분명 알고리즘을 제대로 작성한 것 같은데, 코드를 채점하고 제출하니 87.5의 정확도가 나오며 두개가 자꾸 실패를 했다. 뭐가 잘못되었나 다시 문제를 읽어보니, ~‘문자열 s의 길이가 4 혹은 6이고’~ 를 간과하고 있었다….주륵,,,, 그래서 문자열의 길이를 확인하는 코드를 추가하니, 한번에 해결되었다. 이번 문제를 풀면서, 문제에서 제시한 요구사항들이 무엇인지에 대해서 놓치지 말고 꼼꼼히 봐야한다고 생각했다….",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/17/basicStringQuestion/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/17/basicStringQuestion/"
   },{
     "title": "[ 프로그래머스 ] 서울에서 김서방 찾기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; string solution(vector&lt;string&gt; seoul) { string answer = \"\"; string answer1 = \"김서방은 \"; string answer2 = \"에 있다\"; string locationNum; int size = seoul.size(); for(int i=0;i&lt;size;i++){ if(seoul[i]==\"Kim\") locationNum = to_string(i); } answer += answer1; answer += locationNum; answer += answer2; return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/16/practiceFindingKim/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/16/practiceFindingKim/"
   },{
     "title": "[ 프로그래머스 ] 문자열 내 p와 y의 개수 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;iostream&gt; using namespace std; bool solution(string s) { bool answer = true; int size = s.size(); int pNum = 0; int yNum = 0; //s에서 p와 y의 개수 모으기 for(int i=0;i&lt;size;i++){ if(s[i]=='p'||s[i]=='P') pNum++; else if(s[i]=='y'||s[i]=='Y') yNum++; } //두개의 개수 비교 if(pNum==yNum) answer = true; else answer = false; return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/16/practiceComparePY/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/16/practiceComparePY/"
   },{
     "title": "[Error] Registry directory not available(Mac)",
     "text": "Registry directory not available 이클립스를 다시 삭제하려고 하니, 이러한 오류가 뜨면서 설치가 안됐음. rm -rf ~/.eclipse ~/.p2를 사용하여 이클립스에 관련된 것들을 모두 삭제해버리고 설치하니 잘 된다. 내가 보기엔, 기존에 있던 이클립스 관련된 파일들을 제대로 삭제를 안하고 설치하려고 하니 디렉토리가 충돌하여 생기는 문제같다.",
@@ -141,38 +141,38 @@ var tipuesearch = {"pages": [{
   },{
     "title": "[ 프로그래머스 ] 가운데 글자 가져오기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;iostream&gt; using namespace std; string solution(string s) { string answers; int length = s.size(); //s의 길이 구하기 //짝수, 홀수에 따라서 s를 answers에 추가 if(length%2==0){ answers+=s[length/2-1]; answers+=s[length/2]; } if (length%2==1){ answers+=s[length/2]; } return answers; } 비교적 쉬웠던 알고리즘 문제. 생각을 조금만 한다면 금방 풀 수 있다. 5분만에 풀었다 헤헤",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/15/practiceMiddleWord/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/15/practiceMiddleWord/"
   },{
     "title": "[ 프로그래머스 ] 같은 숫자는 싫어 (연습문제)",
     "text": "코드 #include &lt;vector&gt; #include &lt;iostream&gt; using namespace std; vector&lt;int&gt; solution(vector&lt;int&gt; arr) { vector&lt;int&gt; answer; int size; int tmpInt; size = arr.size(); for(int i=0;i&lt;size;i++){ tmpInt = arr[i]; //비교하기 위해서 tmpInt에 i 위치의 숫자를 넣기 if(tmpInt!=arr[i+1]){ //연속적으로 나타나는 숫자가 아닐경우 answer.push_back(tmpInt); //answer 벡터에 입력 tmpInt=arr[i+1]; //연속적으로 나타나는게 아닌 숫자로 tmpInt를 변경 }else if(tmpInt==arr[i+1]){ //연속적으로 나타나는 숫자일 경우 continue; i++; } } return answer; } 이것도 비교적 쉬웠던 문제. 처음에는 살짝 방법을 꼬아서 생각하다가 단순하게 생각하자! 하고선 코딩하니 성공했다.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/15/practiceHateSameNumber/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/15/practiceHateSameNumber/"
   },{
     "title": "[ 프로그래머스 ] 나누어 떨어지는 숫자 배열 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; //sort를 사용하기 위해 추가 using namespace std; vector&lt;int&gt; solution(vector&lt;int&gt; arr, int divisor) { vector&lt;int&gt; answer; int size = arr.size(); for(int i=0;i&lt;size;i++){ if(arr[i]%divisor==0){ //나누어 떨어지는 값일 경우 answer.push_back(arr[i]); }else if (arr[i]%divisor!=0){ //나누어 떨어지는 값이 아닐 경우 continue; } } if(answer.size()==0){ //나누어 떨어지는 값이 하나도 없는 경우 answer.push_back(-1); } sort(answer.begin(),answer.end()); //오름차순으로 정렬 return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/15/practiceDivisorArr/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/15/practiceDivisorArr/"
   },{
     "title": "[ 프로그래머스 ] 2016년 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;iostream&gt; using namespace std; string solution(int a, int b) { std::vector&lt;int&gt; month; std::vector&lt;string&gt; daily; string pushDaily[7] = {\"SUN\",\"MON\",\"TUE\",\"WED\",\"THU\",\"FRI\",\"SAT\"}; string answer; int aTotal = 0; int bTotal = 0; int startMonth = 0; int startDate = 0; int answerDate = 0; for(int i=0;i&lt;7;i++){ daily.push_back(pushDaily[i]); } //각각의 월에 해당되는 값 처리 for(int i=1;i&lt;=12;i++){ if(i == 2){ //윤달인 2월만 따로 처리 int monthNum = 1; month.push_back(monthNum); }else if(((i%2==1)&amp;&amp;i&lt;8)||((i%2==0)&amp;&amp;i&gt;7&amp;&amp;(i!=2))){ int monthNum = 3; month.push_back(monthNum); }else if(((i%2==0)&amp;&amp;i&lt;8&amp;&amp;(i!=2))||((i%2==1)&amp;&amp;i&gt;7)){ int monthNum = 2; month.push_back(monthNum); } } for(int i=0;i&lt;a-1;i++){ aTotal += month[i]; } aTotal = aTotal%7 - 2; if(aTotal &gt;= 0){ startMonth = aTotal; }else if(aTotal&lt;0){ startMonth = 7 + aTotal; } //시작하는 일에 따른 요일 처리 bTotal = b%7 - 1; if(bTotal &gt;= 0){ startDate = bTotal; }else if(bTotal &lt; 0){ startDate = 7 + bTotal; } answerDate = startMonth + startDate; if(answerDate &gt;= 7){ answerDate = answerDate - 7; } answer = daily[answerDate]; return answer; } 먼저 aTotal과 startMonth는 월, bTotal과 startDate는 일에 관련된 변수. 2월은 윤달이므로 다른 달들과는 다르게 29일까지만 있으니 예외로 처리해주고, 나머지 달들은 30일과 31일에 해당되는 것들을 처리해줬음",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/14/practice2016Year/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/14/practice2016Year/"
   },{
     "title": "[ 백준알고리즘 ] 11399번 ATM (그리드 알고리즘)",
     "text": "코드 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; using namespace std; int main(){ int n; int total = 0; cin &gt;&gt; n; vector&lt;int&gt; person; vector&lt;int&gt; time; for(int i=0;i&lt;n;i++){ int pushNum; cin &gt;&gt; pushNum; person.push_back(pushNum); } sort(person.begin(),person.end()); //오름차순 순으로 정렬 for(int i=0;i&lt;n;i++){ if(i == 0){ time.push_back(person[0]); } else { int tmpTime = time[i-1] + person[i]; time.push_back(tmpTime); } } for(int i=0;i&lt;n;i++){ total += time[i]; } cout &lt;&lt; total &lt;&lt; endl; return 0; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/14/greedyAlgorithm/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/14/greedyAlgorithm/"
   },{
     "title": "[ 프로그래머스 ] k번째 수(정렬)",
     "text": "기댓값이 다르게 나온 코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;iostream&gt; using namespace std; vector&lt;int&gt; solution(vector&lt;int&gt; array, vector&lt;vector&lt;int&gt;&gt; commands) { std::vector&lt;int&gt; answer; std::vector&lt;int&gt; tmp; int num = commands.size(); //commands[num][?] for(int s = 0;s&lt;num;s++){ int i = commands[s][0] - 1; int j = commands[s][1] - 1; int k = commands[s][2] - 1; for(int p = i;p&lt;j;p++){ tmp.push_back(array[p]); } std::sort(tmp.begin(),tmp.end()); answer.push_back(tmp[k]); } return answer; } 이러한 오류가 발생하여서 구글링을 해보니, answer.push_back(tmp[k]) 의 다음 줄에 tmp.clear()를 추가해줘야한다. 올바른 코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;iostream&gt; using namespace std; vector&lt;int&gt; solution(vector&lt;int&gt; array, vector&lt;vector&lt;int&gt;&gt; commands) { std::vector&lt;int&gt; answer; std::vector&lt;int&gt; tmp; int num = commands.size(); //commands[num][?] for(int s = 0;s&lt;num;s++){ int i = commands[s][0] - 1; int j = commands[s][1]; int k = commands[s][2] - 1; for(int p = i;p&lt;j;p++){ tmp.push_back(array[p]); } std::sort(tmp.begin(),tmp.end()); answer.push_back(tmp[k]); tmp.clear(); } return answer; }",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/11/sortingAlgorithm/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/11/sortingAlgorithm/"
   },{
     "title": "[ 프로그래머스 ] 완주하지 못한 선수(해시)",
     "text": "#include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;vector&gt; using namespace std; string solution(vector&lt;string&gt; participant, vector&lt;string&gt; completion) { string answer = \"\"; sort(participant.begin(), participant.end()); sort(completion.begin(), completion.end()); int num = 0; for(int i = 0; i &lt; participant.size(); i++){ if(participant[i] != completion[i]) return participant[i]; } return answer; } 여기서 가장 주목해서 생각해야 할 부분은 먼저 해시의 데이터를 sort하는 것. sort만 하면, 나머지 부분들은 쉽게 해결할 수 있었다.",
-    "tags": "algorithm study",
-    "url": "/study/2020/03/10/hashAlgorithm/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/10/hashAlgorithm/"
   },{
     "title": "[ Ericsson-LG ] 6주간의 인턴십을 마치며",
     "text": "19년도부터 에릭슨엘지와의 인연이 시작되어 지금까지 이어져온 것 같다. 작년 19년 5월, Girls In ICT 해커톤에서 수상을 하게되어 감사하게도 인턴십의 기회를 얻을 수 있었다. 작년 해커톤 사진들 수상 후 여름과 겨울 중 인턴 수행 기간을 선택할 수 있었다. 나와 함께했던 동료들은 겨울 인턴을 신청하였고, 감사하게도 지난 20년 1월부터 약 6주동안 인턴십을 수행하였다. 20년 인턴십 수행 인턴 사원증 출근했던 강남 메리츠타워 처음으로 블루스크린을 구경했던 멘토님의 노트북. 기념으로 사진 찍었다. 이틀차에 회의에 처음 들어가서 집중해서 듣고 있을때, 갑자기 실장님께서 주고 가셨던 5년 다이어리,,, 감사하게도 아직도 열심히 쓰는 중이다. 네트워크 회사이기 때문에, 5G core에 관련해서 처음부터 배워야 했다. 메리츠타워 구내식당에서 먹었던 비빔밥,,,, 내가 제일 좋아했던 음식이다. 일산으로의 3주간의 출장을 마치고 다시 강남으로 돌아와 개인 프로젝트에 힘을 쏟았다. 인턴 최종 발표 인턴 최종 발표 후, 해커톤 수상 기념패를 받았다! 지난 6주동안 정말 회사분들께 많은 사랑을 받은 것 같다. 네트워크에 자신이 없었지만, 회사분들께 실망을 드리고 싶지 않았다. 또한 인턴 생활을 단지 내가 네트워크를 어려워한다는 이유 하나만으로 망치고 싶지 않았기에, 누구보다 열정적으로 하였다. 처음에 기획했던 프로젝트는 너무나 컸기에 멘토님과 회사분들께 상담을 하며 나의 프로젝트 기획을 수정할 수 있었고, 물론 완벽하게 프로젝트를 마친 것은 아니었지만, 학부생의 능력으로 이정도까지 한 것은 박수를 주고 싶다는 칭찬도 받았다. 또한 감사하게도 3주간의 출장 기회를 주신 덕분에, 인턴임에도 불구하고 출장이라는 것을 경험할 수 있었다. 처음에는 출장이라는 것에 막연한 걱정과 새로운 곳으로 다시 출근해야 한다는 걱정이 있었다. 하지만 막상 해보니 내가 출장이라는 것을 싫어하지 않는다는 것도 깨달았고, 새로운 공간에서 일을 한다는 것이 의외로 새로운 자극을 준다는 것도 깨달았다. 정말 기회가 된다면 다시 뵙고 싶을 정도로 좋은 분들을 만났다. 그리고 멘토님과 많은 분들의 도움 덕분에, 내가 그렇게 무섭고 두려워했던 네트워크에 눈을 뜨게 된 것에 대해 정말 정말 감사하다는 말씀을 드리고싶다. 비록 아직 학교를 졸업하려면 1년이라는 시간이 더 남았지만, 그동안에 내가 힘을 쏟고있는 공부와 더불어 네트워크 공부도 병행해서 해야지! 그리고선 정직원으로 입사할 수 있을 정도의 실력으로 키워서 인턴생활때 만났던 분들을 다시 만나고 싶다!!! 끄앙 너무 좋았다!!!!! 부서에서 일 하는 업무들도 너무 재밌어보였다… 나의 열정을 다시 한번 더 불 지펴준 에릭슨엘지와 인턴생활때 만났던 분들께 정말정말 감사하다고 말씀 드리고싶다!!!!!!!! 감사합니다!!!!!!!!!!!",
@@ -231,8 +231,8 @@ var tipuesearch = {"pages": [{
   },{
     "title": "[ 백준알고리즘 ] 1966번 프린터큐",
     "text": "이번에 풀은 문제 #include &lt;iostream&gt; #include &lt;queue&gt; using namespace std; queue &lt; pair &lt;int,int&gt; &gt; q; //큐 q priority_queue&lt;int&gt; pq; //우선순위 큐 pq int N,M; int result[100]; int printQueue(int a){ int count = 0; if(N ==1) count = 1; else { while(!q.empty()){ if(pq.top()!=q.front().second){ //pq에 넣은 weight와 q에 넣은 weight의 값이 다르면 pair &lt;int,int&gt; tmp = q.front(); //q의 가장 앞 정수를 tmp에 넣기 q.pop(); q.push(tmp); } else { //pq의 weight와 q의 weight가 같을때 if(M == q.front().first){ //M과 q에 넣은 weight의 위치 값이 같으면 인쇄 count++; break; }else{ count++; pq.pop(); q.pop(); } } } } result[a] = count; return result[a]; } int main(){ int test_case; cin &gt;&gt; test_case; for(int i=0;i&lt;test_case;i++){ cin &gt;&gt; N &gt;&gt; M; //weight값 넣고 queue에 값 넣음 for(int j=0;j&lt;N;j++){ int weight; cin &gt;&gt; weight; q.push(pair&lt;int,int&gt;(j,weight)); //weight와 위치(j)를 같이 push pq.push(weight); } printQueue(i); //queue 초기화 while(!q.empty()&amp;&amp;!pq.empty()){ q.pop(); pq.pop(); } } for(int i=0;i&lt;test_case;i++) cout &lt;&lt; result[i] &lt;&lt; endl; return 0; } 매번 c로만 queue 코드를 작성하다가 c++ 공부 시작하면서 처음 작성해본 cpp queue인데 여러가지 시행착오도 있었고 구글링도 있었지만 발전하는 과정이라고 생각한다. 다음에는 작성할 때 좀 더 코드줄을 줄이는게 목표 코드 작성하며 굿노트에 적었던 생각의 흐름 예전에는 이렇게 안 적고 무작정 코드 작성하기로 달려들었는데, 나는 그렇게 하다보니 더 체계가 안잡혀있어서 더 코드가 작성 안되고 이상한 늪으로 빠지는 기분이 많았다. 그래서 처음 코드 작성할때는 문제의 요점을 이해하고 코드를 작성하려고 함",
-    "tags": "algorithm study",
-    "url": "/study/2019/10/27/printerQueue/"
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2019/10/27/printerQueue/"
   },{
     "title": "드디어 Github Blog 개설!",
     "text": "3번의 repositories 삭제, 그리고 4번째에 성공 대학교 1학년때부터 했던 프로젝트나 작성했던 코드들은 주로 구글 드라이브에 백업을 해놓았다. 그런데 계속 공부하고 학년이 올라갈수록 내가 몰랐던 것들이나 매일 공부했던 것들을 기록할 공간이 필요했다 그래서 2학년때부터 네이버 블로그, 티스토리 등을 전전하며 살아오다가 우연히 동기가 Github에 정리해보라는 말을 해줘서 시작하게 되었다. 물론 처음에는 부끄러워서 private로 만들고 commit 하다보니 잔디밭이 생성되고 점점 github에 대해서 공부하는게 너무 재밌어서 블로그까지 만들었다. 이게 이렇게 오래걸릴줄은 정말 몰랐다… 내 맘에 들게 수정하고 그러다보니 거의 꼬박 하루를 투자한듯.. 휴.. 그래도 이번 기회로 많이 배웠다 물론 첫 게시물은 주절주절하는 이야기이긴 해도(ENFP라서 그러니 이해 부탁) 매일 블로그에 공부한거 commit 하도록 노력할거다 쓸데없는 전공 공부나 진짜 기초적인거라고 해도 다 올릴거다. 왜냐하면 나는 금붕어 기억력이라서 계속 계속 봐야지 기억하기 때문 이번 기회에 markdown 문법도 공부해야지 아직 익숙하지 않아서 블로그가 아직 미완성이지만, 열심히 공부해서 계속 발전해가는 나의 개발 블로그로 만들어보겠다",
