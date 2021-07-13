@@ -139,6 +139,11 @@ var tipuesearch = {"pages": [{
     "tags": "java study",
     "url": "/study/2020/03/15/installerInternalErrorEclipse/"
   },{
+    "title": "[ 프로그래머스 ] 두 정수 사이의 합 (연습문제)",
+    "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; using namespace std; long long solution(int a, int b) { long long answer = 0; int firstNum,secondNum; if(a &gt; b){ firstNum = b; secondNum = a; } else { firstNum = a; secondNum = b; } for(int i=firstNum;i&lt;=secondNum;i++){ answer+=i; } return answer; }",
+    "tags": "c++ algorithm",
+    "url": "/algorithm/2020/03/15/practiceSumBetweenNumbers/"
+  },{
     "title": "[ 프로그래머스 ] 가운데 글자 가져오기 (연습문제)",
     "text": "코드 #include &lt;string&gt; #include &lt;vector&gt; #include &lt;iostream&gt; using namespace std; string solution(string s) { string answers; int length = s.size(); //s의 길이 구하기 //짝수, 홀수에 따라서 s를 answers에 추가 if(length%2==0){ answers+=s[length/2-1]; answers+=s[length/2]; } if (length%2==1){ answers+=s[length/2]; } return answers; } 비교적 쉬웠던 알고리즘 문제. 생각을 조금만 한다면 금방 풀 수 있다. 5분만에 풀었다 헤헤",
     "tags": "c++ algorithm",
