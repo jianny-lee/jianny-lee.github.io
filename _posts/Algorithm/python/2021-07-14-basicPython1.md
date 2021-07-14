@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ 파이썬 문법 ] print, seperator, end, format"
+title: "[ 파이썬 문법 ] Print 함수의 이해"
 date: 2021-07-14
 categories: algorithm
 tags: python
