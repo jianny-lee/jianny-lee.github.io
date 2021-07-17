@@ -6,9 +6,110 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Jul 2021 00:55:44 +0900</pubDate>
-    <lastBuildDate>Fri, 16 Jul 2021 00:55:44 +0900</lastBuildDate>
+    <pubDate>Sat, 17 Jul 2021 23:56:53 +0900</pubDate>
+    <lastBuildDate>Sat, 17 Jul 2021 23:56:53 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Docker] 1.도커의 기초 - 도커를 사용하는 의의</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;책 ‘도커/쿠버네티스를 활용한 컨테이너 개발 실전 입문’을 기반으로 공부 한 내용을 정리&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용 의의
+    &lt;ul&gt;
+      &lt;li&gt;변화하지 않는 실행 환경으로 멱등성 확보
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;환경 차이로 인한 문제 방지&lt;/dt&gt;
+              &lt;dd&gt;코드로 관리하는 인프라(Infrastructure as Code)와 불변 인프라(Immutable Infrastructure) 개념 제안&lt;/dd&gt;
+            &lt;/dl&gt;
+            &lt;ul&gt;
+              &lt;li&gt;코드로 관리하는 인프라(Infrastructure as Code)
+                &lt;ul&gt;
+                  &lt;li&gt;코드 기반으로 인프라를 정의&lt;/li&gt;
+                  &lt;li&gt;서버 구성과 라이브러리 및 도구 설치를 코드로 정의 후 셰프(Chef)나 앤서블(Ansible) 같은 프로비저닝 도구로 서버를 구축&lt;/li&gt;
+                  &lt;li&gt;코드 중심으로 바꿈으로써 쉽게 같은 구성의 서버 여러대 복제 가능
+                    &lt;blockquote&gt;
+                      &lt;p&gt;그러나, 코드 기반으로 인프라 구축을 관리해도 멱등성 보장을 위해 항구적 코드를 계속 작성하는 것은 효율성이 낮기 때문에 &lt;strong&gt;불변 인프라 개념을 도입&lt;/strong&gt;&lt;/p&gt;
+                    &lt;/blockquote&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;불변 인프라(Immutable Infrastructure) 개념
+                &lt;ul&gt;
+                  &lt;li&gt;어떤 시점의 서버 상태를 저장해 복제할 수 있게 하자는 개념&lt;/li&gt;
+                  &lt;li&gt;제대로 설정된 상태의 서버를 항상 사용 할 수 있다는 장점 보유&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;코드를 통한 실행 환경 구축 및 애플리케이션 구성
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;애플리케이션 구성 관리의 용이성&lt;/dt&gt;
+              &lt;dd&gt;필요한 컨테이너를 각각 실행하는 방법으로 시스템을 구성&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;도커 컨테이너 오케스트레이션 시스템&lt;/dt&gt;
+              &lt;dd&gt;여러 서버에 걸쳐 있는 여러 컨테이너를 관리하는 기법&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;도커 컴포즈(Docker Compose)&lt;/dt&gt;
+              &lt;dd&gt;여러 컨테이너를 사용하는 애플리케이션을 쉽게 관리하도록 해줌.&lt;/dd&gt;
+              &lt;dd&gt;yaml 포맷으로 작성된 설정 파일로 컨테이너를 정의하거나 컨테이너 간의 의존 관계를 정의해 시작 순서 제어 가능&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gihyodocker/web&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3000:3000&quot;&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;REDIS_TARGET&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;redis:alpine&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;dl&gt;
+              &lt;dt&gt;도커 스웜(Docker Swarm)&lt;/dt&gt;
+              &lt;dd&gt;도커 컴포즈가 단일 서버를 넘어 여러 서버에 걸쳐 있는 여러 컨테이너를 관리할 수 있도록 한 도구&lt;/dd&gt;
+              &lt;dd&gt;컨테이너 증가 혹은 감소는 물론이고 노드의 리소스를 효율적으로 활용하기 위한 컨테이너 배치 및 로드 밸런싱 기능 등 더욱 실용적인 기능 갖췄고, 롤링 업데이트(오래된 컨테이너와 새로운 컨테이너를 단계적으로 서비스에 교체 투입하는 것) 가능&lt;/dd&gt;
+            &lt;/dl&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;실행 환경과 애플리케이션의 일체화로 이식성 향상&lt;/li&gt;
+      &lt;li&gt;시스템을 구성하는 애플리케이션 및 미들웨어의 관리 용이성&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 16 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/docker/2021/07/16/basicDocker2/</link>
+        <guid isPermaLink="true">http://localhost:4000/docker/2021/07/16/basicDocker2/</guid>
+        
+        <category>docker</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
     
       <item>
         <title>[Docker] 1.도커의 기초 - 도커란?</title>
@@ -1855,44 +1956,6 @@ int로만 계산을 하다보면, 나중에 출력이 될 때 충분한 값이 �
         <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/algorithm/2020/03/17/basicStringQuestion/</link>
         <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/17/basicStringQuestion/</guid>
-        
-        <category>c++</category>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 서울에서 김서방 찾기 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seoul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;김서방은 &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;에 있다&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locationNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seoul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seoul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Kim&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;locationNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locationNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img width=&quot;812&quot; alt=&quot;스크린샷 2020-03-16 21 40 31&quot; src=&quot;https://user-images.githubusercontent.com/56791347/76759315-c4267500-67ce-11ea-96ca-9064b803f19a.png&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 16 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithm/2020/03/16/practiceFindingKim/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/16/practiceFindingKim/</guid>
         
         <category>c++</category>
         
