@@ -13,12 +13,12 @@ url:                 https://jianny-lee.github.io
 baseurl:             ""
 repository:             "jianny-lee/jianny-lee.github.io"
 # A very short description of your page
-tagline:             "My diary about study, experience, and feeling"
+tagline:             "도전을 겁내지 말고 할 일을 미루지 말자"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  Server, Infra, and Cat 🐱🥰
+   고양이 좋아🐱🥰
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
