@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Docker] 1.도커의 기초 - 도커를 사용하는 의의"
-date: 2021-07-16
+date: 2021-07-17
 categories: docker
 tags: docker
 comments: true

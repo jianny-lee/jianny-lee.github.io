@@ -6,9 +6,163 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Jul 2021 23:56:53 +0900</pubDate>
-    <lastBuildDate>Sat, 17 Jul 2021 23:56:53 +0900</lastBuildDate>
+    <pubDate>Sun, 18 Jul 2021 12:06:39 +0900</pubDate>
+    <lastBuildDate>Sun, 18 Jul 2021 12:06:39 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Docker] 2.도커 컨테이너 배포 - 컨테이너로 애플리케이션 실행하기</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;책 ‘도커/쿠버네티스를 활용한 컨테이너 개발 실전 입문’을 기반으로 공부 한 내용을 정리&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;도커 이미지와 컨테이너의 관계&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;도커 이미지&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;컨테이너를 구성하는 파일 시스템과 실행할 애플리케이션 설정을 하나로 합친 것으로, 컨테이너를 생성하는 템플릿 역할&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;도커 컨테이너&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;도커 이미지를 기반으로 생성, 파일 시스템과 애플리케이션이 구체화돼 실행되는 상태&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img width=&quot;1098&quot; alt=&quot;1&quot; src=&quot;https://user-images.githubusercontent.com/56791347/126053998-5ecb6030-5c3b-4836-87fb-cbdfae91ab7e.png&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;도커 이미지와 도커 컨테이너
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;도커 이미지 받아오기 ( $docker image pull 명령어)&lt;br /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054021-3e90032b-f1bf-46f2-859f-31c9dfd90799.png&quot; alt=&quot;2_1&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054026-72dc47b4-abd5-454f-bfc8-00f246ad4bff.png&quot; alt=&quot;2&quot; /&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;dl&gt;
+          &lt;dt&gt;실행 ( $docker container run 명령어)&lt;/dt&gt;
+          &lt;dt&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054038-0eb3e106-30af-4355-a0de-6862254a033e.png&quot; alt=&quot;3_1&quot; /&gt;&lt;/dt&gt;
+          &lt;dt&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054039-859b08be-943d-4b98-b6e4-8c24c0411bbf.png&quot; alt=&quot;3&quot; /&gt;&lt;/dt&gt;
+          &lt;dd&gt;옵션을 통해 포트 포워딩이 적용 되어있음. 때문에 도커 실행 환경의 포트 9000을 거쳐 HTTP 요청을 전달 받음&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/li&gt;
+      &lt;li&gt;curl 명령으로 접근하기 ($curl http://localhost:9000/)
+ &lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054054-cdbeb6bd-ce98-4df1-b458-dcfcdc75e098.png&quot; alt=&quot;1_1&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;간단한 애플리케이션과 도커 이미지 만들기&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;main.go 파일 만들기
+        &lt;pre&gt;&lt;code class=&quot;language-Go&quot;&gt;  package main
+  import (
+      &quot;fmt&quot;
+      &quot;log&quot;
+      &quot;net/http&quot;
+  )
+
+  func main() {
+      http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+          log.Println(&quot;received request&quot;)
+          fmt.Fprintf(w, &quot;Hello Docker!&quot;)
+      })
+            
+      log.Println(&quot;Start Server&quot;)
+            
+      server := &amp;amp;http.Server{
+          Addr: &quot;:8080&quot;,
+      }
+      if err := server.ListenAndServe(); err != nil {
+          log.Println(err)
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;모든 http 요청에 대해 “Hello Docker!”라는 응답을 보낸다&lt;/li&gt;
+          &lt;li&gt;포트 8080로 요청을 받는 서버 애플리케이션으로 동작&lt;/li&gt;
+          &lt;li&gt;클라이언트로부터 요청을 받으면 received request라는 메시지를 표준으로 출력&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Dockerfile 만들기
+        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  FROM golang:1.9
+            
+  RUN &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; /echo
+  COPY main.go /echo
+            
+  CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;go&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;run&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;echo/main.go&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;FROM 인스트럭션
+  → 도커 이미지의 바탕이 될 베이스 이미지를 지정. Dockerfile로 이미지를 빌드할 때 먼저 FROM 인스트럭션에 지정된 이미지를 내려받음
+  → FROM에서 받아오는 이미지는 도커 허브 레지스터리에 이미 공개된 것&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;RUN 인스트럭션
+  → 도커 이미지를 실행할 때 컨테이너 안에서 실행할 명령어를 정의하는 인스트럭션&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;COPY 인스트럭션
+  → 도커가 동작 중인 호스트 머신의 파일이나 디렉터리를 도커 컨테이너 안으로 복사하는 인스트럭션&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;CMD 인스트럭션
+  → 도커 컨테이너를 실행할 때 컨테이너 안에서 실행할 프로세스를 지정&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커 이미지 빌드하기
+      &lt;code class=&quot;highlighter-rouge&quot;&gt;docker image build -t 이미지명[:태그명] Dockerfile의_경로&lt;/code&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054139-6b32760c-4de4-4bc0-888e-e2f5bda08030.png&quot; alt=&quot;4&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054140-a3b9e913-0c84-4bc0-bbdf-c5b65d41ea0f.png&quot; alt=&quot;5&quot; /&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;도커 컨테이너 실행&lt;br /&gt;
+► &lt;code class=&quot;highlighter-rouge&quot;&gt;docker container run example/echo:latest&lt;/code&gt;
+► &lt;code class=&quot;highlighter-rouge&quot;&gt;docker container run -d example/echo:latest (백그라운드로 실행)&lt;/code&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054141-f7c4800d-a570-470b-83c2-7f8d691819c1.png&quot; alt=&quot;6&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054253-e07f05a3-b206-4da4-9a1a-33f174424240.png&quot; alt=&quot;11&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;포트 포워딩  &lt;/dt&gt;
+      &lt;dt&gt;      &lt;code class=&quot;highlighter-rouge&quot;&gt;curl http://localhost:8080/&lt;/code&gt;&lt;/dt&gt;
+      &lt;dd&gt;echo 애플리케이션은 8080 포트를 리스닝하고 있지만, 컨테이너 안에서 한정된 포트임. 때문에 컨테이너 밖에서 온 요청을 컨테이너 안에 있는 애플리케이션에 전달해줘야 함.&lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;ul&gt;
+      &lt;li&gt;위에 오류가 생기는 경우 해결 방법  &lt;br /&gt;
+  → 도커 정지 &lt;br /&gt;
+      &lt;code class=&quot;highlighter-rouge&quot;&gt;docker container stop $(docker container ls --filter &quot;ancestor=example/echo&quot; -q)&lt;/code&gt;&lt;br /&gt;
+  → 호스트 포트 9000을 포트 8080에 연결하여 포트 포워딩&lt;br /&gt;
+      &lt;code class=&quot;highlighter-rouge&quot;&gt;docker container run -d -p 9000:8080 example/echo:latest&lt;/code&gt;&lt;br /&gt;
+  → GET 요청 보내기&lt;br /&gt;
+      &lt;code class=&quot;highlighter-rouge&quot;&gt;curl http://localhost:9000/&lt;/code&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126054307-80a6c600-cebc-449c-b4d1-f88d7c922a40.png&quot; alt=&quot;13&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 18 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/docker/2021/07/18/basicDocker3/</link>
+        <guid isPermaLink="true">http://localhost:4000/docker/2021/07/18/basicDocker3/</guid>
+        
+        <category>docker</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
     
       <item>
         <title>[Docker] 1.도커의 기초 - 도커를 사용하는 의의</title>
@@ -100,9 +254,9 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Fri, 16 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/docker/2021/07/16/basicDocker2/</link>
-        <guid isPermaLink="true">http://localhost:4000/docker/2021/07/16/basicDocker2/</guid>
+        <pubDate>Sat, 17 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/docker/2021/07/17/basicDocker2/</link>
+        <guid isPermaLink="true">http://localhost:4000/docker/2021/07/17/basicDocker2/</guid>
         
         <category>docker</category>
         
@@ -1910,52 +2064,6 @@ int로만 계산을 하다보면, 나중에 출력이 될 때 충분한 값이 �
         <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/algorithm/2020/03/17/practiceSuBak/</link>
         <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/17/practiceSuBak/</guid>
-        
-        <category>c++</category>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 문자열 다루기 기본 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//문자열이 4 혹은 6일때&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//숫자로 구성되어 있는지 판단&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'0'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'9'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'a'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'z'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'A'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//문자열이 4 혹은 6이 아닐경우&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img width=&quot;811&quot; alt=&quot;스크린샷 2020-03-17 14 39 40&quot; src=&quot;https://user-images.githubusercontent.com/56791347/76825386-26c65200-685d-11ea-93c5-545c646b5353.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;분명 알고리즘을 제대로 작성한 것 같은데, 코드를 채점하고 제출하니 87.5의 정확도가 나오며 두개가 자꾸 실패를 했다.
-뭐가 잘못되었나 다시 문제를 읽어보니, ~&lt;strong&gt;‘문자열 s의 길이가 4 혹은 6이고’&lt;/strong&gt;~ 를 간과하고 있었다….주륵,,,,&lt;/p&gt;
-
-&lt;p&gt;그래서 문자열의 길이를 확인하는 코드를 추가하니, 한번에 해결되었다.
-이번 문제를 풀면서, 문제에서 제시한 요구사항들이 무엇인지에 대해서 놓치지 말고 꼼꼼히 봐야한다고 생각했다….&lt;/p&gt;
-</description>
-        <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithm/2020/03/17/basicStringQuestion/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/17/basicStringQuestion/</guid>
         
         <category>c++</category>
         
