@@ -251,13 +251,13 @@ on <a href="/tag/docker-docker/" data-flip="title">Docker</a>
 </blockquote>
 
 <ul>
-  <li>도커 사용법
+  <li><strong>도커 사용법</strong>
     <ul>
       <li>이미지를 대상으로</li>
       <li>컨테이너를 대상으로</li>
     </ul>
   </li>
-  <li>도커 이미지란?
+  <li><strong>도커 이미지란?</strong>
     <ul>
       <li>도커 컨테이너를 만들기 위한 템플릿</li>
       <li>운영체제로 구성된 파일 시스템 + 애플리케이션 + 의존 라이브러리 + 실행 환경의 설정 정보 =&gt; 아카이브!</li>
@@ -280,7 +280,7 @@ on <a href="/tag/docker-docker/" data-flip="title">Docker</a>
               도커 허브 등 레지스터리에서 최신 버전이 있는지를 확인하고 빌드해서 속도 면에서는 떨어지기 때문에, 실무에서는 latest로 지정하는 것을 피하고 태그로 지정한 베이스 이미지를 사용<br />
   <code class="highlighter-rouge">$docker image build --pull=true -t example/echo:latest .</code></p>
   </li>
-  <li>docker search - 이미지 검색
+  <li><strong>docker search - 이미지 검색</strong>
     <ul>
       <li>
         <dl>
@@ -293,7 +293,7 @@ on <a href="/tag/docker-docker/" data-flip="title">Docker</a>
     </ul>
   </li>
   <li>
-    <p>docker image pull - 이미지 내려받기<br />
+    <p><strong>docker image pull - 이미지 내려받기</strong><br />
   <code class="highlighter-rouge">$docker image pull [options] 레포지토리명[:태그명]</code>
       - 인자로 지정한 레포지토리명과 태그명은 도커 허브에 이미 존재하는 것이어야 함<br />
       -  이 명령어로 내려받은 이미지는 그대로 도커 컨테이너를 생성하는 데 사용할 수 있음.</p>
@@ -318,11 +318,14 @@ on <a href="/tag/docker-docker/" data-flip="title">Docker</a>
   COPY 대상이 되는 파일의 내용이 바뀌어도 IMAGE ID 값이 바뀜<br />
   &lt;none&gt;은 이전에 있던 도커 이미지의 잔재</li>
         </ul>
+
+        <dl>
+          <dt>◊ 이미지 ID에 태그 부여하기  </dt>
+          <dt>  <code class="highlighter-rouge">$docker image tag 기반이미지명[:태그] 새이미지명[:태그]</code>  </dt>
+          <dt>      ex) <code class="highlighter-rouge">$docker image tag example/echo:latest example/echo:0.1.0</code></dt>
+          <dd>이미지 ID에 태그를 부여하면 두개의 태그 이미지가 생성되지만 둘 다 같은 이미지를 가리킴</dd>
+        </dl>
       </dd>
-      <dt>◊ 이미지 ID에 태그 부여하기  </dt>
-      <dt>  <code class="highlighter-rouge">$docker image tag 기반이미지명[:태그] 새이미지명[:태그]</code>  </dt>
-      <dt>      ex) <code class="highlighter-rouge">$docker image tag example/echo:latest example/echo:0.1.0</code></dt>
-      <dd>이미지 ID에 태그를 부여하면 두개의 태그 이미지가 생성되지만 둘 다 같은 이미지를 가리킴</dd>
     </dl>
   </li>
   <li>

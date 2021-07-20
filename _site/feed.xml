@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 21 Jul 2021 01:09:37 +0900</pubDate>
-    <lastBuildDate>Wed, 21 Jul 2021 01:09:37 +0900</lastBuildDate>
+    <pubDate>Wed, 21 Jul 2021 01:13:17 +0900</pubDate>
+    <lastBuildDate>Wed, 21 Jul 2021 01:13:17 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
     
       <item>
@@ -17,13 +17,13 @@
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;도커 사용법
+  &lt;li&gt;&lt;strong&gt;도커 사용법&lt;/strong&gt;
     &lt;ul&gt;
       &lt;li&gt;이미지를 대상으로&lt;/li&gt;
       &lt;li&gt;컨테이너를 대상으로&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;도커 이미지란?
+  &lt;li&gt;&lt;strong&gt;도커 이미지란?&lt;/strong&gt;
     &lt;ul&gt;
       &lt;li&gt;도커 컨테이너를 만들기 위한 템플릿&lt;/li&gt;
       &lt;li&gt;운영체제로 구성된 파일 시스템 + 애플리케이션 + 의존 라이브러리 + 실행 환경의 설정 정보 =&amp;gt; 아카이브!&lt;/li&gt;
@@ -46,7 +46,7 @@
               도커 허브 등 레지스터리에서 최신 버전이 있는지를 확인하고 빌드해서 속도 면에서는 떨어지기 때문에, 실무에서는 latest로 지정하는 것을 피하고 태그로 지정한 베이스 이미지를 사용&lt;br /&gt;
   &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image build --pull=true -t example/echo:latest .&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;docker search - 이미지 검색
+  &lt;li&gt;&lt;strong&gt;docker search - 이미지 검색&lt;/strong&gt;
     &lt;ul&gt;
       &lt;li&gt;
         &lt;dl&gt;
@@ -59,7 +59,7 @@
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;docker image pull - 이미지 내려받기&lt;br /&gt;
+    &lt;p&gt;&lt;strong&gt;docker image pull - 이미지 내려받기&lt;/strong&gt;&lt;br /&gt;
   &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image pull [options] 레포지토리명[:태그명]&lt;/code&gt;
       - 인자로 지정한 레포지토리명과 태그명은 도커 허브에 이미 존재하는 것이어야 함&lt;br /&gt;
       -  이 명령어로 내려받은 이미지는 그대로 도커 컨테이너를 생성하는 데 사용할 수 있음.&lt;/p&gt;
@@ -84,11 +84,14 @@
   COPY 대상이 되는 파일의 내용이 바뀌어도 IMAGE ID 값이 바뀜&lt;br /&gt;
   &amp;lt;none&amp;gt;은 이전에 있던 도커 이미지의 잔재&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;dl&gt;
+          &lt;dt&gt;◊ 이미지 ID에 태그 부여하기  &lt;/dt&gt;
+          &lt;dt&gt;  &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image tag 기반이미지명[:태그] 새이미지명[:태그]&lt;/code&gt;  &lt;/dt&gt;
+          &lt;dt&gt;      ex) &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image tag example/echo:latest example/echo:0.1.0&lt;/code&gt;&lt;/dt&gt;
+          &lt;dd&gt;이미지 ID에 태그를 부여하면 두개의 태그 이미지가 생성되지만 둘 다 같은 이미지를 가리킴&lt;/dd&gt;
+        &lt;/dl&gt;
       &lt;/dd&gt;
-      &lt;dt&gt;◊ 이미지 ID에 태그 부여하기  &lt;/dt&gt;
-      &lt;dt&gt;  &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image tag 기반이미지명[:태그] 새이미지명[:태그]&lt;/code&gt;  &lt;/dt&gt;
-      &lt;dt&gt;      ex) &lt;code class=&quot;highlighter-rouge&quot;&gt;$docker image tag example/echo:latest example/echo:0.1.0&lt;/code&gt;&lt;/dt&gt;
-      &lt;dd&gt;이미지 ID에 태그를 부여하면 두개의 태그 이미지가 생성되지만 둘 다 같은 이미지를 가리킴&lt;/dd&gt;
     &lt;/dl&gt;
   &lt;/li&gt;
   &lt;li&gt;
