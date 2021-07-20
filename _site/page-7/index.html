@@ -54,9 +54,9 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-<meta name="description" content="Server, Infra, and Cat 🐱🥰
+<meta name="description" content="고양이 좋아🐱🥰
 ">
-<meta property="og:description" content="Server, Infra, and Cat 🐱🥰
+<meta property="og:description" content="고양이 좋아🐱🥰
 ">
 
 
@@ -177,6 +177,76 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/home_left2.jpeg">
       
+  
+
+<article id="post-study/2019/12/16/DevSwiftFirstWeb" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/study/2019/12/16/DevSwiftFirstWeb/" data-flip="title">
+        [Swift] 웹 개발 : 앱 시작 시 페이지 보이기
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2019-12-16T00:00:00+09:00">16 Dec 2019</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/study/" data-flip="title">Study</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/study-ios/" data-flip="title">IOS</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <blockquote>
+  <p>지정 웹 페이지 보여 주기</p>
+  <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">func</span> <span class="nf">loadWebPage</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">myURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">myRequest</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">myURL</span><span class="o">!</span><span class="p">)</span>
+        <span class="n">webView</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">myRequest</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Info.plist 파일 선택
+* Information Property List에 항목 추가
+* App Transport Security Setting 선택
+	* App Transport Security Setting에 하위 항목 추가
+	* Allow Arbitrary Loads 선택 -&gt; value값을 Yes로 변경
+</code></pre></div>  </div>
+</blockquote>
+
+    <p class="read-more"><a class="heading" href="/study/2019/12/16/DevSwiftFirstWeb/" data-flip="title">Continue reading </a></p>
+  
+
+</article>
+
+
+
   
 
 <article id="post-study/2019/12/16/DevSwiftError1" class="post mb6" role="article">
@@ -662,7 +732,7 @@ in <a href="/category/diary/" data-flip="title">Diary</a>
       <br/>
       <div class="sidebar-about">
         <h1><a id="_title" href="/">Jianny's Dev Blog</a></h1>
-        <p>My diary about study, experience, and feeling</p>
+        <p>도전을 겁내지 말고 할 일을 미루지 말자</p>
 
       </div>
 
@@ -962,7 +1032,7 @@ in <a href="/category/diary/" data-flip="title">Diary</a>
 
         
       </div>
-      <p>Server, Infra, and Cat 🐱🥰</p>
+      <p>고양이 좋아🐱🥰</p>
 
       
       
