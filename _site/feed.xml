@@ -6,9 +6,269 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 21 Jul 2021 01:13:17 +0900</pubDate>
-    <lastBuildDate>Wed, 21 Jul 2021 01:13:17 +0900</lastBuildDate>
+    <pubDate>Sun, 25 Jul 2021 19:31:48 +0900</pubDate>
+    <lastBuildDate>Sun, 25 Jul 2021 19:31:48 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Docker] 2.도커 컨테이너 배포 - 도커 컨테이너 다루기(1)</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;책 ‘도커/쿠버네티스를 활용한 컨테이너 개발 실전 입문’을 기반으로 공부 한 내용을 정리&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커 컨테이너의 생애주기&lt;br /&gt;
+      - 실행 중, 정지, 파기의 3가지 상태를 가짐
+      - docker container run 명령으로 컨테이너를 최초 실행한 시점의 상태는 ‘실행 중’ 
+      - 각 컨테이너는 같은 이미지로 생성했다고 하더라도 별개의 상태를 가짐 –&amp;gt; 상태 갖지않는 도커 이미지와 큰 차이 중 하나&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;실행 중 상태
+        &lt;ul&gt;
+          &lt;li&gt;도커 이미지 기반으로 컨테이너가 생성되면 이 이미지를 생성했던 Dockerfile에 포함된 CMD 및 ENTRYPOINT 인스트럭션에 정의된 애플리케이션이 실행&lt;/li&gt;
+          &lt;li&gt;실행된 애플리케이션의 상태 == 컨테이너의 실행 중 상태&lt;/li&gt;
+          &lt;li&gt;서버 애플리케이션이면 오류로 인해 종료되지 않는 한, 실행 중 상태가 지속되어 실행 기간이 김&lt;/li&gt;
+          &lt;li&gt;반면, 명령행 도구 등의 컨테이너는 실행 중 상태가 길게 유지 X&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;정지 상태
+        &lt;ul&gt;
+          &lt;li&gt;실행 중 상태의 컨테이너를 사용자가 docker container stop 명령어로 정지하거나 컨테이너에서 실행된 애플리케이션이 정상/오류 여부를 떠나 종료된 경우, 컨테이너가 자동으로 정지 상태가 됨&lt;/li&gt;
+          &lt;li&gt;컨테이너 정지 시 가상환경으로서는 더 이상 동작 X, 디스크에 컨테이너가 종료되던 시점의 상태가 저장돼 남음 –&amp;gt; 정지시킨 컨테이너를 재가동 가능 의미함&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;파기 상태
+        &lt;ul&gt;
+          &lt;li&gt;명시적으로 파기하지 않는 이상, 정지 상태의 경우 디스크에 그대로 남음 –&amp;gt; 디스크 차지하는 용량이 늘어나므로 불필요한 컨테이너 완전 삭제가 바람직&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;docker container run - 컨테이너 생성 및 실행&lt;/dt&gt;
+      &lt;dd&gt;도커 이미지로부터 컨테이너를 생성하고 실행하는 명령 –&amp;gt; 컨테이너를 실행 중 상태로 만들기 위해 사용
+        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker container run &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] 이미지명[:태그] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;명령] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;명령인자...]
+docker container run &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] 이미지ID &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;명령] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;명령인자...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;example/echo:latest 이미지를 기반으로 컨테이너를 백그라운드 실행 방법&lt;/dt&gt;
+      &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker container run -d -p 9000:8080 example/echo:latest&lt;/code&gt;&lt;/dt&gt;
+      &lt;dt&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893927-7a74e52a-f236-4e72-884f-e2d72963dcdc.png&quot; alt=&quot;1&quot; /&gt;&lt;/dt&gt;
+      &lt;dd&gt;-p 옵션 사용하여 호스트 쪽 포트 9000을 컨테이너 쪽 포트 8080으로 포트 포워딩함
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893930-a41e417c-a5e7-4275-bfe1-32b3d47ba5f9.png&quot; alt=&quot;2&quot; /&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;docker container run 명령의 인자
+      : docker container run 명령에 명령 인자를 전달하면, Dockerfile에서 정의했던 CMD 인스트럭션을 오버라이드 할 수 있음
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893933-faef104e-3322-4006-acfe-55d7945d0f73.png&quot; alt=&quot;3&quot; /&gt;
+&lt;img width=&quot;1209&quot; alt=&quot;4&quot; src=&quot;https://user-images.githubusercontent.com/56791347/126893937-eba762ba-47ae-4df4-a552-942988908c13.png&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893940-358aa3b7-3bad-450b-8f57-349c2d95e360.png&quot; alt=&quot;5&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893942-35548f96-b420-4d1a-8b53-ed4e905bfefd.png&quot; alt=&quot;6&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;컨테이너에 이름 붙이기&lt;/dt&gt;
+      &lt;dd&gt;NAMES column에 이름이 무작위로 들어간 것을 볼 수 있음 –&amp;gt; 명령어를 이용하여 이름 붙이기 가능  &lt;br /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893950-f33b683e-4781-4a1f-987d-6bdbd7990767.png&quot; alt=&quot;7&quot; /&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ docker container run --name [컨테이너명] [이미지명]:[태그]&lt;/code&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/126893951-d4017676-55ae-4454-9feb-108fee60b1ad.png&quot; alt=&quot;8&quot; /&gt;		
+&lt;img width=&quot;1344&quot; alt=&quot;9&quot; src=&quot;https://user-images.githubusercontent.com/56791347/126893957-342c331b-23fe-40d5-813d-c996019439fb.png&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 25 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/docker/2021/07/25/basicDocker5/</link>
+        <guid isPermaLink="true">http://localhost:4000/docker/2021/07/25/basicDocker5/</guid>
+        
+        <category>docker</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
+    
+      <item>
+        <title>[Spring] REST API</title>
+        <description>&lt;h4 id=&quot;rest-api&quot;&gt;REST API&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;GET API
+    &lt;ul&gt;
+      &lt;li&gt;리소스 취득&lt;/li&gt;
+      &lt;li&gt;Annotation
+        &lt;ul&gt;
+          &lt;li&gt;@GetMapping : Get Resource 설정&lt;/li&gt;
+          &lt;li&gt;@RequestParam : URL Query Param Parsing&lt;/li&gt;
+          &lt;li&gt;@PathVariable : URL Path Variable Parsing&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;POST API
+    &lt;ul&gt;
+      &lt;li&gt;리소스 생성, 추가&lt;/li&gt;
+      &lt;li&gt;Annotation
+        &lt;ul&gt;
+          &lt;li&gt;@PostMapping : Post Resource 설정&lt;/li&gt;
+          &lt;li&gt;@RequestBody : Request Body 부분 파싱&lt;/li&gt;
+          &lt;li&gt;@PathVariable : URL Path Variable 파싱&lt;/li&gt;
+          &lt;li&gt;@JsonProperty : json naming&lt;/li&gt;
+          &lt;li&gt;@JsonNaming : class json naming&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PUT API
+    &lt;ul&gt;
+      &lt;li&gt;리소스 갱신, 생성&lt;/li&gt;
+      &lt;li&gt;Annotation
+        &lt;ul&gt;
+          &lt;li&gt;@PutMapping : Put Resource 설정)&lt;/li&gt;
+          &lt;li&gt;@RequestBody : Request Body 부분 파싱&lt;/li&gt;
+          &lt;li&gt;@PathVariable : URL Path Variable 파싱&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;DELETE API
+    &lt;ul&gt;
+      &lt;li&gt;리소스 삭제&lt;/li&gt;
+      &lt;li&gt;Annotation
+        &lt;ul&gt;
+          &lt;li&gt;@DeleteMapping : Delete Resource 설정&lt;/li&gt;
+          &lt;li&gt;@RequestParam : URL Query Param 파싱&lt;/li&gt;
+          &lt;li&gt;@PathVariable : URL Path Variable 파싱&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Object : Query Param Object로 파싱&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@ResponseBody 문자 반환
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HelloController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello-string&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;helloString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestParam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@ResponseBody 객체 반환
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HelloController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello-api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;helloApi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestParam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nc&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hello&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ResponseBody 사용 원리(출처 : 인프런 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술)
+&lt;img width=&quot;603&quot; alt=&quot;스크린샷 2021-07-25 오후 7 30 18&quot; src=&quot;https://user-images.githubusercontent.com/56791347/126896040-6dbc32a3-bd88-45c1-aa96-bd6b8e79b6aa.png&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 24 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/backend/2021/07/24/restapi-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/backend/2021/07/24/restapi-1/</guid>
+        
+        <category>spring</category>
+        
+        
+        <category>backend</category>
+        
+      </item>
+    
+      <item>
+        <title>[Spring] 스프링의 라이브러리 가볍게 살펴보기</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;스프링이란
+    &lt;ul&gt;
+      &lt;li&gt;자바빈(POJO)를 사용해서 할 수 있도록 하면서도 EJB에서만 가능했던 많은 일을 가능하도록 지원&lt;/li&gt;
+      &lt;li&gt;EJB를 사용할 때 알아야했던 수많은 디자인 패턴을 신경 쓰지 않아도 됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;-라이브러리-살펴보기-&quot;&gt;[ 라이브러리 살펴보기 ]&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;스프링부트 라이브러리
+    &lt;blockquote&gt;
+      &lt;p&gt;Gradle은 의존 관계가 있는 라이브러리를 함께 다운로드함&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;spring-boot-starter-web&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; |   
+ |------- spring-boot-starter-tomcat : 톰캣(웹서버)   
+ |------- spring-webmvc : 스프링 웹 MVC   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;spring-boot-starter-thymeleaf : 타임리프 템플릿 엔진(View)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;spring-boot-starter(공통) : 스프링부트 + 스프링코어 + 로깅&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; |  
+ |------- spring-boot   
+         |--------- spring-core  
+ |------- spring-boot-starter-logging  
+         |--------- logback, slf4j  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;테스트 라이브러리&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;spring-boot-starter-test&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     |------- junit: 테스트 프레임워크  
+     |------- mockito: 목 라이브러리  
+     |------- assertj: 테스트 코드를 좀 더 편하게 작성하게 도와주는 라이브러리  
+     |------- spring-test: 스프링 통합 테스트 지원  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Thymeleaf 템플릿 엔진 동작
+    &lt;ul&gt;
+      &lt;li&gt;웹 환경과 비웹 환경 모두에서 작동할 수 있는 Java XML/XHTML/HTML5 템플릿 엔진&lt;/li&gt;
+      &lt;li&gt;동작 환경 그림(출처 : 인프런 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술)
+  &lt;img width=&quot;602&quot; alt=&quot;스크린샷 2021-07-25 오후 6 42 48&quot; src=&quot;https://user-images.githubusercontent.com/56791347/126894815-66fb0ba5-6aee-43c7-81a0-c6ede66e030f.png&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 22 Jul 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/backend/2021/07/22/basicSpring1/</link>
+        <guid isPermaLink="true">http://localhost:4000/backend/2021/07/22/basicSpring1/</guid>
+        
+        <category>spring</category>
+        
+        
+        <category>backend</category>
+        
+      </item>
     
       <item>
         <title>[Docker] 2.도커 컨테이너 배포 - 도커 이미지 다루기</title>
@@ -2015,127 +2275,6 @@ int로만 계산을 하다보면, 나중에 출력이 될 때 충분한 값이 �
         
         
         <category>study</category>
-        
-      </item>
-    
-      <item>
-        <title>2020년 3월에 작성하는 근황</title>
-        <description>&lt;p&gt;드디어 개강이라는걸 했다…..
-&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/76829348-50d04200-6866-11ea-9a57-72c80bd6ad42.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;작년에 휴학했을때는 ‘1년이 얼마나 긴데 금방 가겠어~’ 했는데 금방 갔다.😱
-나름 휴학하는 동안에 열심히 산다고 이것 저것 많이 했는데, 그러한 과정들 덕분에 1년전의 나와 비교해보면 참으로 많이 성장한 것 같다.
-21살에 새내기로 입학 했을때와도 비교해보면,,,, 진짜,,,, 과거의 내 자신에게 수고했다고 말해주고싶다.&lt;/p&gt;
-
-&lt;p&gt;처음에 전공 안 맞는다고 방황하고 코드만 보면 속에서 울렁거리는 공포증인지 뭔지 모를것이 와서 1,2학년 학점을 말아먹긴 했지만, 학점과는 다르게 외부에서 이것저것 많이 활동하며 내 자신에 대해 되돌아보았다.
-또한 휴학했던 1년동안 내가 조금이라도 관심있던 공부들에 대해서 닥치는대로 공부하다보니 코딩에 대해 흥미를 느끼며 전공 공부를 뭐 할지 찾아하고,,,, 깨달음을 얻고,,,, 대단하다 내 자신!!!!!! 헤헤&lt;/p&gt;
-
-&lt;p&gt;내가 아는 다른 동기들은 이제 졸업해서 이름만 대면 다 아는 회사에 취업을 많이 했다.
-그걸 보면서 한편으로는 부럽기도 했지만 한편으로는 사람마다 각자의 속도가 있으니 조급해하지 않기로 했다.
-나는 1년동안의 휴학 생활 덕분에 정말 많은 것들을 깨닫고 얻을 수 있었던 소중한 시간이었기 때문이다. (물론 그렇다고 작년으로 돌아가고싶지는 않음ㅋ)
-&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/76829327-40b86280-6866-11ea-9b53-c87af4f6c645.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;개강을 하고 수업을 들으니 수업 듣는게 너무 재밌고,,, 그렇다,,,^^
-물론 코로나 때문에 학교에 등교를 못하는건 아쉽지만, 얼른 진정되서 오프라인 수업 들으러 가고싶다.
-그리고 얼른 본가에 가고싶다. 작년 12월에 마지막으로 갔는데 인턴 하는동안 힘들기도 하고 바빠서 끝나고 간다고 했더니 하필이면 코로나가 그때부터 심해져서,,, 4개월동안 못가고 있다. 이러다가 여름에 가게되면 어쩌지,,,,,
-뭐 어쨌든간에 그동안 열심히 공부해야지! 헤헤&lt;/p&gt;
-
-&lt;p&gt;그럼 이만
-&lt;img src=&quot;https://user-images.githubusercontent.com/56791347/76829415-7f4e1d00-6866-11ea-84a4-c7bc32c89648.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;앞으로 남은 3월동안에 해야할 것&lt;/strong&gt;&lt;/p&gt;
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;인턴 생활동안 있었던 trubleShooting들 블로그에 정리하기!!!&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;프로그래머스 Level 1 알고리즘 문제들 후딱 끝내기&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;spring과 react 공부 시간 있으면 시작해보기&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;The Korea Times를 이용하여 영어 공부하기&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/diary/2020/03/17/secondDiary/</link>
-        <guid isPermaLink="true">http://localhost:4000/diary/2020/03/17/secondDiary/</guid>
-        
-        
-        <category>Diary</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 약수의 합 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sumArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;sumArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;sumArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sumArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sumArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img width=&quot;797&quot; alt=&quot;스크린샷 2020-03-18 18 01 33&quot; src=&quot;https://user-images.githubusercontent.com/56791347/76943342-89dde480-6942-11ea-9616-b6e69725ef25.png&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithm/2020/03/17/practiceSumOfAliquot/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/17/practiceSumOfAliquot/</guid>
-        
-        <category>c++</category>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 평균구하기 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img width=&quot;608&quot; alt=&quot;스크린샷 2020-03-18 21 44 12&quot; src=&quot;https://user-images.githubusercontent.com/56791347/76961929-9d4c7800-6961-11ea-81e0-dea3d54a006f.png&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 17 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithm/2020/03/17/practiceAverage/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/17/practiceAverage/</guid>
-        
-        <category>c++</category>
-        
-        
-        <category>algorithm</category>
         
       </item>
     

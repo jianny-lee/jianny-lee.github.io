@@ -179,6 +179,242 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
       
   
 
+<article id="post-algorithm/2021/07/14/basicPython3" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/algorithm/2021/07/14/basicPython3/" data-flip="title">
+        [ 파이썬 문법 ] 파이썬의 자료형-2
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-07-14T00:00:00+09:00">14 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/algorithm-python/" data-flip="title">Python</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <h2 id="파이썬-데이터-타입자료형">파이썬 데이터 타입(자료형)</h2>
+
+<h4 id="리스트순서o-중복o-수정o-삭제o">리스트(순서o, 중복o, 수정o, 삭제o)</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s">'Pen'</span><span class="p">,</span> <span class="s">'Banana'</span><span class="p">,</span> <span class="s">'Orange'</span><span class="p">]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s">'Pen'</span><span class="p">,</span> <span class="s">'Banana'</span><span class="p">,</span> <span class="s">'Orange'</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>인덱싱
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div>    </div>
+  </li>
+  <li>슬라이싱
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div>    </div>
+  </li>
+  <li>연산
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s">'hi'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+    <p class="read-more"><a class="heading" href="/algorithm/2021/07/14/basicPython3/" data-flip="title">Continue reading </a></p>
+  
+
+</article>
+
+
+
+  
+
+<article id="post-algorithm/2021/07/14/basicPython2" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/algorithm/2021/07/14/basicPython2/" data-flip="title">
+        [ 파이썬 문법 ] 파이썬의 자료형-1
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-07-14T00:00:00+09:00">14 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/algorithm-python/" data-flip="title">Python</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <p>이번에 이어질 두개의 포스팅은 파이썬의 자료형에 대해서 간단하게 소개할 것이다.</p>
+
+<ul>
+  <li>데이터 타입</li>
+</ul>
+
+
+    <p class="read-more"><a class="heading" href="/algorithm/2021/07/14/basicPython2/" data-flip="title">Continue reading </a></p>
+  
+
+</article>
+
+
+
+  
+
+<article id="post-algorithm/2021/07/14/basicPython1" class="post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/algorithm/2021/07/14/basicPython1/" data-flip="title">
+        [ 파이썬 문법 ] Print 함수의 이해
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2021-07-14T00:00:00+09:00">14 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/algorithm-python/" data-flip="title">Python</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <p>현재 패스트캠퍼스에서 코딩 완주반(파이썬)을 듣는 중인데 항상 파이썬은 문법을 차근차근 공부 하기보다는<br />
+당장 닥친 프로젝트(단편적 예로 자연어 처리,,,ㅎ)가 생기면 구글링 해가면서 코딩하는 스타일이었다.<br />
+이번에 수업을 들으면서 파이썬 문법도 정리할 겸 파이썬 문법 정리 시작.</p>
+<h6 id="알고-있는-것도-아예-모른다는-생각으로-기초부터-듣는-중">알고 있는 것도 아예 모른다는 생각으로 기초부터 듣는 중^^,,,</h6>
+
+<h3 id="파이썬-기초-코딩">파이썬 기초 코딩</h3>
+<h3 id="print-구문의-이해">print 구문의 이해</h3>
+
+<ul>
+  <li>기본출력
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'hello python!'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Hello python!"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"""Hello Python!"""</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Seperator 옵션 사용
+    <h5 id="안에-있는-값으로-문자열을-연결해줌">안에 있는 값으로 문자열을 연결해줌</h5>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'T'</span><span class="p">,</span><span class="s">'E'</span><span class="p">,</span><span class="s">'S'</span><span class="p">,</span><span class="s">'T'</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'2019'</span><span class="p">,</span><span class="s">'02'</span><span class="p">,</span><span class="s">'19'</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'niceman'</span><span class="p">,</span><span class="s">'google.com'</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">'@'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>end 옵션 사용
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Welcom To'</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'the black paradise'</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'piano notes'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>format 사용 [],{},()</li>
+</ul>
+
+
+    <p class="read-more"><a class="heading" href="/algorithm/2021/07/14/basicPython1/" data-flip="title">Continue reading </a></p>
+  
+
+</article>
+
+
+
+  
+
 <article id="post-backend/2021/07/13/studyNetwork" class="post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -463,177 +699,6 @@ in <a href="/category/diary/" data-flip="title">Diary</a>
 
 
     <p class="read-more"><a class="heading" href="/diary/2020/07/13/thirdDiary/" data-flip="title">Continue reading </a></p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithm/2020/03/25/baek1923" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithm/2020/03/25/baek1923/" data-flip="title">
-        [ 백준 1934번 ] 최소 공배수
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2020-03-25T00:00:00+09:00">25 Mar 2020</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithm-c/" data-flip="title">C++</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-    <p><strong>코드</strong></p>
-
-
-    <p class="read-more"><a class="heading" href="/algorithm/2020/03/25/baek1923/" data-flip="title">Continue reading </a></p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithm/2020/03/24/practiceArraySum" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithm/2020/03/24/practiceArraySum/" data-flip="title">
-        [ 프로그래머스 ] 행렬의 덧셈 (연습문제)
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2020-03-24T00:00:00+09:00">24 Mar 2020</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithm-c/" data-flip="title">C++</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-    <p><strong>코드</strong></p>
-
-
-    <p class="read-more"><a class="heading" href="/algorithm/2020/03/24/practiceArraySum/" data-flip="title">Continue reading </a></p>
-  
-
-</article>
-
-
-
-  
-
-<article id="post-algorithm/2020/03/23/practiceSqrtOrNot" class="post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/algorithm/2020/03/23/practiceSqrtOrNot/" data-flip="title">
-        [ 프로그래머스 ] 정수 제곱근 판별 (연습문제)
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      <time datetime="2020-03-23T00:00:00+09:00">23 Mar 2020</time>
-      
-
-
-
-
-
-
-
-
-
-in <a href="/category/algorithm/" data-flip="title">Algorithm</a>
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/algorithm-c/" data-flip="title">C++</a>
-
-    </p>
-
-    
-  <div class="hr" style="padding-bottom:0"></div>
-
-
-  </header>
-  
-
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
-    <p><strong>코드</strong></p>
-
-
-    <p class="read-more"><a class="heading" href="/algorithm/2020/03/23/practiceSqrtOrNot/" data-flip="title">Continue reading </a></p>
   
 
 </article>
