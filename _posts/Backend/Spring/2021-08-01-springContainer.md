@@ -13,9 +13,9 @@ comments: true
         ```java
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         ```
-        - **ApplicationContext**를 스프링 컨테이너라고 함
-        - **ApplicationContext**는 인터페이스!
-        - 스프링 컨테이너는 XML 기반으로 만들 수도 있으며, Annotation 기반의 자반 설정 클래스로도 만들 수 있음
+        - **ApplicationContext**를 스프링 컨테이너라고 함  
+        - **ApplicationContext**는 인터페이스!  
+        - 스프링 컨테이너는 XML 기반으로 만들 수도 있으며, Annotation 기반의 자반 설정 클래스로도 만들 수 있음  
 
         <img width="648" alt="스크린샷 2021-08-01 오후 8 28 55" src="https://user-images.githubusercontent.com/56791347/127769212-3c685319-6b88-41b3-a307-fb40320763f4.png">
 
