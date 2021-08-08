@@ -2,6 +2,70 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://localhost:4000/backend/2021/08/08/springSingleton/</loc>
+      
+        <lastmod>2021-08-08T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/backend/2021/08/08/springAutowired/</loc>
+      
+        <lastmod>2021-08-08T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/backend/2021/08/01/springContainer/</loc>
+      
+        <lastmod>2021-08-01T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/backend/2021/08/01/springAppConfig/</loc>
+      
+        <lastmod>2021-08-01T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
       <loc>http://localhost:4000/docker/2021/07/25/basicDocker5/</loc>
       
         <lastmod>2021-07-25T00:00:00+09:00</lastmod>
@@ -181,6 +245,22 @@
       <loc>http://localhost:4000/backend/2021/07/13/studyNetwork/</loc>
       
         <lastmod>2021-07-13T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
+      <loc>http://localhost:4000/diary/2021/07/11/julyDiary/</loc>
+      
+        <lastmod>2021-07-11T00:00:00+09:00</lastmod>
       
 
       
