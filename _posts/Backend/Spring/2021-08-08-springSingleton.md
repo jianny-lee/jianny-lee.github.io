@@ -23,11 +23,11 @@ comments: true
   
 
     - **싱글톤 컨테이너 적용 전**
-    <img width="590" alt="스크린샷 2021-08-08 오후 12 08 12" src="https://user-images.githubusercontent.com/56791347/128619416-8f658999-e580-4789-82a7-634f7c2774c5.png">
+    <img width="590" alt="스크린샷 2021-08-08 오후 12 08 12" src="https://user-images.githubusercontent.com/56791347/128619416-8f658999-e580-4789-82a7-634f7c2774c5.png">  
   
     - **싱글톤 컨테이너 적용 후**
-    <img width="574" alt="스크린샷 2021-08-08 오후 12 08 23" src="https://user-images.githubusercontent.com/56791347/128619422-d71ff683-6b08-45dc-b134-93cf631c0ee8.png">
+    <img width="574" alt="스크린샷 2021-08-08 오후 12 08 23" src="https://user-images.githubusercontent.com/56791347/128619422-d71ff683-6b08-45dc-b134-93cf631c0ee8.png">  
 
 * 싱글톤 방식의 주의점
-    - 객체 인스턴스 하나만 생성해서 공유하는 싱글톤 방식은 여러 클라이언트가 하나의 같은 객체 인스턴스를 공유하기 때문에, 싱글톤 객체가 상태를 유지(stateful)하게 설계하면 안됨
-    - 즉, 무상태(stateless)로 설계해야함
+    - 객체 인스턴스 하나만 생성해서 공유하는 싱글톤 방식은 여러 클라이언트가 하나의 같은 객체 인스턴스를 공유하기 때문에, 싱글톤 객체가 상태를 유지(stateful)하게 설계하면 안됨  
+    - 즉, 무상태(stateless)로 설계해야함  
