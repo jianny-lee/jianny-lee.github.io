@@ -1,4 +1,9 @@
 var tipuesearch = {"pages": [{
+    "title": "[Spring] 스프링 Annotation",
+    "text": "스프링에서 사용하는 기본적인 Annotations들로 까먹거나,,, 궁금한거나,,, 뭐 그런거 생기면 지속적으로 추가 할 예정 @Service 위치 : …ServiceImpl.java 비즈니스 로직을 처리하는 Service 클래스 @Repository 위치 : …DAO.java 데이터베이스 연동을 처리하는 DAO 클래스 @Controller 위치 : …Controller.java 사용자 요청을 제어하는 Controller 클래스",
+    "tags": "spring backend",
+    "url": "/backend/2021/08/15/springAnnotation/"
+  },{
     "title": "[React] React 디렉토리 파일",
     "text": "리액트 프로젝트 디렉토리의 파일 node_modules Directory 리액트 앱이 가지고 있는 의존성 라이브러리 파일들 public static 파일 src 소스코드 작성하는 디렉토리 App.js : public/index.html에 렌더링할 내용 기술하는 곳 index.js : App.js에 작성된 내용을 public/index.html의 특정 dom(id=’root’)에 매핑 시켜줌 package.json 리액트의 버전, 의존성등이 기재되어 있는 파일. 패키지 추가시, 추가한 패키지의 내용이 이곳에 기재됨 spring boot와 연동하기 위한 proxy 설정을 이곳에서 함",
     "tags": "react front",
