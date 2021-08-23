@@ -6,9 +6,139 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 15 Aug 2021 11:00:05 +0900</pubDate>
-    <lastBuildDate>Sun, 15 Aug 2021 11:00:05 +0900</lastBuildDate>
+    <pubDate>Tue, 24 Aug 2021 01:50:32 +0900</pubDate>
+    <lastBuildDate>Tue, 24 Aug 2021 01:50:32 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[OpenStack] 2주차 과제 : CLI와 친해지기</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;먼저 아래의 작업이 진행되기 전에, OpenStack CLI 프로젝트 개발 환경을 만들어줘야 하는 것을 잊지 말기&lt;br /&gt;
+&lt;a href=&quot;https://play.openstack-kr.org/pages/viewpage.action?pageId=12943383&quot;&gt;OpenStack CLI 프로젝트 개발 환경 Setting&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;✻ 아래의 이미지와 같은 에러가 발생한 경우
+&lt;img width=&quot;1076&quot; alt=&quot;week2-1&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483769-02b5d866-8ade-4225-917a-7189564592cd.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1) openstack 명령어를 사용하기 위해서는 &lt;strong&gt;source openrc [username] [instance name]&lt;/strong&gt; 을 stack에 접속 후 실행 해줘야함
+명령어를 입력 후, 아래의 이미지처럼 openstack 명령어를 입력하여 실행이 되는지 확인 해보기
+&lt;img width=&quot;1103&quot; alt=&quot;week2-2&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483765-4ed92952-f4b8-4356-9816-ffb44d3e1b6f.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2) 사실 위의 링크를 진행하면서 &lt;strong&gt;4)cli 실행 환경 만들기&lt;/strong&gt; 의 shell 실행에서 수많은 모듈들을 추가해줘야했다.
+모듈을 다운 받을때는 터미널에 아래의 명령어 입력하기&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip3 &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &amp;lt;module name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;2주차-과제&quot;&gt;2주차 과제&lt;/h3&gt;
+&lt;h4 id=&quot;1-cirros-image로-인스턴스-생성을-cli로-해보기&quot;&gt;1. cirros image로 인스턴스 생성을 cli로 해보기&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    openstack server create &lt;span class=&quot;nt&quot;&gt;--flavor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;flavor] &lt;span class=&quot;nt&quot;&gt;--image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;image name] &lt;span class=&quot;nt&quot;&gt;--nic&lt;/span&gt; net-id&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;network-id] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;instance name]
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;flavor] 는 생성하고자 하는 인스턴스의 flavor를 설정해준다.
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;network-id] 는 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;openstack network list&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 입력 후 보여지는 private id를 넣어주면 된다.
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;image name] 에는 &lt;span class=&quot;k&quot;&gt;**&lt;/span&gt;openstack image list&lt;span class=&quot;k&quot;&gt;**&lt;/span&gt; 를 입력하여 보이는 이미지의 이름을 넣어주면 된다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img width=&quot;1068&quot; alt=&quot;week2-3&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483763-10fd0ab7-b8cb-456d-ba84-1f0a93073772.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;생성이 완료되면 아래와 같이 명령어가 실행된다.
+&lt;img width=&quot;1249&quot; alt=&quot;week2-4&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483761-504dc0db-7e8d-4634-b09e-980bf318d6f9.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2-ubuntu-이미지를-받고-root-password를-설정한-다음-cli로-이미지-등록한-후-인스턴스-생성하고-접속까지-하기&quot;&gt;2. ubuntu 이미지를 받고, root password를 설정한 다음 cli로 이미지 등록한 후 인스턴스 생성하고 접속까지 하기&lt;/h4&gt;
+&lt;h5 id=&quot;1-ubuntu-image-다운로드-받기&quot;&gt;1) ubuntu image 다운로드 받기&lt;/h5&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;2-root-password-변경하기&quot;&gt;2) root password 변경하기&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- virt-customize 툴을 사용하기 전에, 만약 이를 사용하기 위한 툴이 없다면 다운 받기(생략 가능)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;libguestfs-tools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;설치 완료시, 아래 명령어로 root 비밀번호 customize!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;virt-customize &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; focal-server-cloudimg-amd64.img &lt;span class=&quot;nt&quot;&gt;--root-password&lt;/span&gt; password:secret
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img width=&quot;884&quot; alt=&quot;week2-5&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483758-2fea9e3b-b5b8-49a9-b40c-9ec9b56150be.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-ubuntu-image-등록하기&quot;&gt;3) ubuntu image 등록하기&lt;/h5&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openstack image create &lt;span class=&quot;s2&quot;&gt;&quot;ubuntu-image&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; focal-server-cloudimg-amd64.img &lt;span class=&quot;nt&quot;&gt;--disk-format&lt;/span&gt; qcow2 &lt;span class=&quot;nt&quot;&gt;--container-format&lt;/span&gt; bare &lt;span class=&quot;nt&quot;&gt;--public&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img width=&quot;1205&quot; alt=&quot;week2-6&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483756-13eb61d3-8042-47c1-8669-c7068fd69fbe.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://docs.openstack.org/newton/ko_KR/install-guide-ubuntu/glance-verify.html&quot;&gt;[참고] OpenStack Image 서비스 검증 과정&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img width=&quot;1084&quot; alt=&quot;week2-7&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483755-f4f2fd6b-afe0-4b62-b376-1385dd9b3181.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;image 등록이 완료되면 위와 같이 이미지 파일이 등록된 것을 볼 수 있음&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;4-인스턴스-생성&quot;&gt;4) 인스턴스 생성&lt;/h5&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openstack server create &lt;span class=&quot;nt&quot;&gt;--flavor&lt;/span&gt; m1.small &lt;span class=&quot;nt&quot;&gt;--image&lt;/span&gt; ubuntu-image &lt;span class=&quot;nt&quot;&gt;--nic&lt;/span&gt; net-id&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;94e8d679-d127-41c2-b8e7-9cb587451061 ubuntu-image1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img width=&quot;1166&quot; alt=&quot;week2-8&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483752-7d7e35ba-3d40-449e-a7e9-ced1435ceaff.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;생성된 인스턴스를 &lt;code class=&quot;highlighter-rouge&quot;&gt;openstack server list&lt;/code&gt; 명령어를 이용해서 확인해볼 수 있음&lt;/p&gt;
+
+&lt;p&gt;&lt;img width=&quot;1159&quot; alt=&quot;week2-9&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483751-6decab4b-4e95-43ae-bc7e-54fe87e276e3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;5-접속-확인-해보기&quot;&gt;5) 접속 확인 해보기&lt;/h5&gt;
+&lt;p&gt;공인 ip에 접속하여 인스턴스를 확인하면 아래와 같이 생성된것을 볼 수 있다!
+&lt;img width=&quot;1232&quot; alt=&quot;week2-10&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483746-2fd5efac-b52a-432d-b97a-baac74745cdc.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;콘솔창에 접속하여 id와 아까 2-2)에서 설정해준 root 비밀번호를 입력해주면 정상적으로 접속 완료
+&lt;img width=&quot;747&quot; alt=&quot;week2-11&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483744-bcf2b432-7440-412f-bcd3-5aae34563811.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;3-cli로-floating-ip-생성-후-인스턴스에-할당--해제-해보기&quot;&gt;3. CLI로 floating IP 생성 후 인스턴스에 할당 / 해제 해보기&lt;/h4&gt;
+&lt;h5 id=&quot;1-floating-ip-생성&quot;&gt;1) floating ip 생성&lt;/h5&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openstack floating ip create &lt;span class=&quot;nt&quot;&gt;--project&lt;/span&gt; admin &lt;span class=&quot;nt&quot;&gt;--subnet&lt;/span&gt; public-subnet public
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img width=&quot;1105&quot; alt=&quot;week2-12&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483740-30da07a0-4a80-45f2-afdc-2cc15e2b0160.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;2-floating-ip를-인스턴스에-할당-해보기&quot;&gt;2) floating ip를 인스턴스에 할당 해보기&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```openstack floating ip list``` 를 입력하여 생성된 floating ip 리스트를 확인 후, 할당 해주기
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stack@lja-wallaby:~/devstack&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openstack server add floating ip ubuntu-image1 192.168.100.72
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;할당이 완료되면, 아래와 같이 인스턴스 네트워크 목록에서 floating ip가 할당된 것을 확인할 수 있다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img width=&quot;1272&quot; alt=&quot;week2-13&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483733-c408f5cd-317f-48f7-a5a0-fa630934928f.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-인스턴스에-할당-한-floating-ip를-해제하기&quot;&gt;3) 인스턴스에 할당 한 floating ip를 해제하기&lt;/h5&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openstack server remove floating ip ubuntu-image1 192.168.100.72
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;아래와 같이 할당이 해제된 것을 확인해볼 수 있다 &amp;lt;img width=&quot;1164&quot; alt=&quot;week2-14&quot; src=&quot;https://user-images.githubusercontent.com/56791347/130483727-71894131-428c-498e-9ebc-0dce0ff0a953.png&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;4-1080024-네트워크-만들고-public-network와-연결하는-과정을-cli로-해보기optional&quot;&gt;4. 10.8.0.0/24 네트워크 만들고 public network와 연결하는 과정을 cli로 해보기(optional)&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- optional 부분은 좀 더 공부 후 도전 해 볼 예정
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 24 Aug 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/openstack/2021/08/24/openstack-week2-assign/</link>
+        <guid isPermaLink="true">http://localhost:4000/openstack/2021/08/24/openstack-week2-assign/</guid>
+        
+        <category>openstack</category>
+        
+        
+        <category>openstack</category>
+        
+      </item>
     
       <item>
         <title>[Spring] 스프링 Annotation</title>
@@ -2233,62 +2363,6 @@ else:
         <pubDate>Sat, 21 Mar 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/algorithm/2020/03/21/practiceNumbersBetweenNum/</link>
         <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/21/practiceNumbersBetweenNum/</guid>
-        
-        <category>c++</category>
-        
-        
-        <category>algorithm</category>
-        
-      </item>
-    
-      <item>
-        <title>[ 프로그래머스 ] 하샤드 수 (연습문제)</title>
-        <description>&lt;p&gt;&lt;strong&gt;코드&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pushNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;//각 자릿수의 숫자들을 vector에 입력&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;pushNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;pushNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpNum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push_back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pushNum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;//자릿수 합 구하기&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;//하샤드 수인지 판별&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img width=&quot;474&quot; alt=&quot;스크린샷 2020-03-21 09 24 45&quot; src=&quot;https://user-images.githubusercontent.com/56791347/77215119-cfbec680-6b55-11ea-8974-9cf9926fc1a7.png&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 21 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/algorithm/2020/03/21/practiceHarshadNumber/</link>
-        <guid isPermaLink="true">http://localhost:4000/algorithm/2020/03/21/practiceHarshadNumber/</guid>
         
         <category>c++</category>
         
